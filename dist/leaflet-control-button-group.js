@@ -34,7 +34,7 @@
 
     //Default options
 		options: {
-			VERSION		: "0.1.0",
+			VERSION		: "0.2.0",
       position	: 'topleft',
 			horizontal: false,
 			buttons		: [],
@@ -49,8 +49,9 @@
 		},
 
 		onAdd: function (map) {
-			var i;
       this._map = map;
+			return this.createContainerAndButtons();
+/*
 			this._container = this.createContainer();
       L.DomEvent.disableClickPropagation( this._container );
 
@@ -58,7 +59,19 @@
 				this.addButton( this.options.buttons[i] );
 
 			return this._container;
+*/
     },
+
+		//createContainerAndButtons
+		createContainerAndButtons: function(){
+			this._container = this.createContainer();
+      L.DomEvent.disableClickPropagation( this._container );
+
+			for (var i=0; i<this.options.buttons.length; i++ )
+				this.addButton( this.options.buttons[i] );
+
+			return this._container;
+		},
 
 		//createContainer
 		createContainer: function(){

@@ -49,16 +49,20 @@
 		},
 
 		onAdd: function (map) {
-			var i;
       this._map = map;
+			return this.createContainerAndButtons();
+    },
+
+		//createContainerAndButtons
+		createContainerAndButtons: function(){
 			this._container = this.createContainer();
       L.DomEvent.disableClickPropagation( this._container );
 
-			for (i=0; i<this.options.buttons.length; i++ )
+			for (var i=0; i<this.options.buttons.length; i++ )
 				this.addButton( this.options.buttons[i] );
 
 			return this._container;
-    },
+		},
 
 		//createContainer
 		createContainer: function(){
