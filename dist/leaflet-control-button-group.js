@@ -34,7 +34,7 @@
 
     //Default options
 		options: {
-			VERSION		: "0.4.0",
+			VERSION		: "0.4.1",
       position	: 'topleft',
 			horizontal: false,
 			small			: false,
@@ -98,7 +98,7 @@
 
 				if (options.icon){
 					$i = $('<i>')
-						.addClass( 'fa fa-'+options.icon + (this.options.small ? '' : ' fa-lg') )
+						.addClass( 'fa fa-'+options.icon )
 						.appendTo( $link );
 
 					if (options.hoverColor)
@@ -107,7 +107,7 @@
 				$link.append( options.text );
 			}
 			else {
-				$link.addClass( 'fa fa-'+options.icon + (this.options.small ? '' : ' fa-lg') );
+				$link.addClass( 'fa fa-'+options.icon );
 				if (options.hoverColor)
 					$link.css('color', options.hoverColor);
 			}
