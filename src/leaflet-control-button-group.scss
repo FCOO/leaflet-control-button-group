@@ -17,10 +17,58 @@
 //MATHSASS - https://github.com/terkel/mathsass
 @import "../bower_components/mathsass/dist/math";
 
-/*
-Adjustments to give leaflet a bootstrap-like look
-*/
 
+/**********************
+Dim and font-size etc. for the tree different modes. .leaflet-touch.small == normal
+**********************/
+
+$height					: 26px;
+$icon-font-size	: 16px;
+$text-font-size	: 14px;
+
+$leaflet-touch-font-factor: 24/20;
+$leaflet-touch-dim-factor : 30/26;
+
+$leaflet-small-font-factor: 12/14;
+$leaflet-small-dim-factor : 20/26;
+
+.leaflet-bar,
+.leaflet-touch .small.leaflet-bar {
+	a				{ height				: $height; 
+						line-height		: $height;					}
+	a.fa		{ font-size			: $icon-font-size;	}
+	a.text	{ font-size			: $text-font-size;
+						padding-right	: 5px;							}
+	a.text i {	width				: $height;
+							line-height	: $height; 
+							font-size		: $icon-font-size;	}
+}
+
+.small.leaflet-bar {
+	a				{ height			: $leaflet-small-dim-factor*$height; 
+						line-height	: $leaflet-small-dim-factor*$height;						}
+	a.fa		{ font-size			: $leaflet-small-font-factor*$icon-font-size;	}
+	a.text	{ font-size			: $leaflet-small-font-factor*$text-font-size;
+						padding-right	: 4px;																				}
+	a.text i {	width				: $leaflet-small-dim-factor*$height;
+							line-height	: $leaflet-small-dim-factor*$height; 
+							font-size		: $leaflet-small-font-factor*$icon-font-size;		}
+}
+
+.leaflet-touch .leaflet-bar {
+	a.fa		{ font-size			: $leaflet-touch-font-factor*$icon-font-size;	}
+	a.text	{ font-size			: $leaflet-touch-font-factor*$text-font-size;
+						padding-right	: 8px;																				}
+	a.text i {	width				: $leaflet-touch-dim-factor*$height;
+							line-height	: $leaflet-touch-dim-factor*$height; 
+							font-size		: $leaflet-touch-font-factor*$icon-font-size;		}
+}
+
+
+
+/**********************
+Adjustments to give leaflet a bootstrap-like look
+**********************/
 .leaflet-bar {
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -50,8 +98,7 @@ Adjustments to give leaflet a bootstrap-like look
 		$normal-color	: #444;
 		$hover-color	: black;
 
-		$leaflet-touch-font-factor: 24/20;
-		$leaflet-touch-dim-factor : 30/26;
+
 		color	: $normal-color; 
 		cursor: pointer;
 		
@@ -79,42 +126,17 @@ Adjustments to give leaflet a bootstrap-like look
 			&:active	{ background-color: $selected-active-bg-color; }
 		}
 
-		//With icon
-		&.fa {
-			font-size: 16px;
-			.leaflet-touch & { font-size: $leaflet-touch-font-factor*16px }
-		}
 
 		//Button with both icon and text: <a class="text"><i class="fa fa-lg fa-ICON"></i>The text</a>
 		&.text {
 			font-family	: proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif; //Same font-family as bootstrap
-			font-size		: 14px;
 			text-align	: left;
 
 			padding-left	: 0px;
 			width					: auto;
-			padding-right	: 5px;
-
-
-			.leaflet-touch & { 
-				font-size			: $leaflet-touch-font-factor*14px;
-				padding-right	: 8px; 
-			}
-
 			i { 
-				margin			: 0px;
-
-				width				: 26px;
-				line-height	: 26px; 
-				font-size	: 16px; 
-				.leaflet-touch & { 
-					width				: $leaflet-touch-dim-factor*26px;
-					line-height	: $leaflet-touch-dim-factor*26px;
-					font-size		: $leaflet-touch-font-factor*16px;
-				}
-
-				text-align: center;
-
+				margin				: 0px;
+				text-align		: center;
 				vertical-align: 0;
 			}
 		} //end of .leaflet-bar a.text

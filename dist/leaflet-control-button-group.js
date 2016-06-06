@@ -34,9 +34,10 @@
 
     //Default options
 		options: {
-			VERSION		: "0.3.1",
+			VERSION		: "0.4.0",
       position	: 'topleft',
 			horizontal: false,
+			small			: false,
 			buttons		: [],
 			className	: ''
 		},
@@ -56,7 +57,13 @@
 
 		//addButtons
 		addButtons: function(){
-			this._container = L.DomUtil.create('div', 'leaflet-bar '+ (this.options.separatButtons ? 'separat ' : '') + (this.options.horizontal ? 'horizontal ' : '') + this.options.className);
+			this._container = L.DomUtil.create('div',
+				'leaflet-bar '+
+				(this.options.separatButtons ? 'separat ' : '') +
+				(this.options.horizontal ? 'horizontal ' : '') +
+				(this.options.small ? 'small ' : '') +
+				this.options.className
+			);
       L.DomEvent.disableClickPropagation( this._container );
 			for (var i=0; i<this.options.buttons.length; i++ )
 				this._addButton( this.options.buttons[i] );
@@ -91,7 +98,7 @@
 
 				if (options.icon){
 					$i = $('<i>')
-						.addClass('fa fa-lg fa-'+options.icon)
+						.addClass( 'fa fa-'+options.icon + (this.options.small ? '' : ' fa-lg') )
 						.appendTo( $link );
 
 					if (options.hoverColor)
@@ -100,7 +107,7 @@
 				$link.append( options.text );
 			}
 			else {
-				$link.addClass('fa fa-lg fa-'+options.icon);
+				$link.addClass( 'fa fa-'+options.icon + (this.options.small ? '' : ' fa-lg') );
 				if (options.hoverColor)
 					$link.css('color', options.hoverColor);
 			}
