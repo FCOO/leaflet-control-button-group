@@ -34,7 +34,7 @@
 
     //Default options
 		options: {
-			VERSION		: "0.2.0",
+			VERSION		: "0.3.0",
       position	: 'topleft',
 			horizontal: false,
 			buttons		: [],
@@ -50,45 +50,30 @@
 
 		onAdd: function (map) {
       this._map = map;
-			return this.createContainerAndButtons();
-/*
-			this._container = this.createContainer();
-      L.DomEvent.disableClickPropagation( this._container );
-
-			for (i=0; i<this.options.buttons.length; i++ )
-				this.addButton( this.options.buttons[i] );
-
+			this.addButtons();
 			return this._container;
-*/
     },
 
-		//createContainerAndButtons
-		createContainerAndButtons: function(){
-			this._container = this.createContainer();
+		//addButtons
+		addButtons: function(){
+			this._container = L.DomUtil.create('div', 'leaflet-bar '+ (this.options.separatButtons ? 'separat ' : '') + (this.options.horizontal ? 'horizontal ' : '') + this.options.className);
       L.DomEvent.disableClickPropagation( this._container );
-
 			for (var i=0; i<this.options.buttons.length; i++ )
-				this.addButton( this.options.buttons[i] );
-
-			return this._container;
+				this._addButton( this.options.buttons[i] );
 		},
 
-		//createContainer
-		createContainer: function(){
-			return L.DomUtil.create('div', 'leaflet-bar '+ (this.options.horizontal ? 'horizontal ' : '') + this.options.className);
-		},
 
-		//addButton
-		addButton: function( options ){
-			var $button = this.$createButton( options, this._container ),
+		//_addButton
+		_addButton: function( options ){
+			var $button = this._createButton( options ),
 					button = $button[0];
 			this.buttons.push( button );
 			if (options.id)
 				this.buttons[ options.id ] = button;
 		},
 
-		//$createButton
-		$createButton: function (options, container) {
+		//_createButton
+		_createButton: function (options ) {
 			options = L.extend({}, defaultButtonOptions, options);
 
 			//Set options.selectable if a selected-icon or selected is in options
@@ -131,11 +116,10 @@
 
 
 			//Add <hr> before button (only vertical)
-			if (options.separatorBefore && container)
-			  $('<hr>').appendTo( $(container) );
+			if (options.separatorBefore )
+			  $('<hr>').appendTo( $(this._container) );
 
-			if (container)
-				$(container).append( $link );
+			$(this._container).append( $link );
 
 			if (options.selected)
 				this._selectButton( $link[0], true );

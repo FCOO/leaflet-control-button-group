@@ -29,17 +29,26 @@
 
 		var map = L.map('map').setView([56.2, 11.5], 6);
 		L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
-
-		var myButtonGroup = new L.Control.ButtonGroup({
-			horizontal:true,
-			buttons: [
+	
+		var myButtons = [
 				{icon:'map-marker ', hoverColor: 'green', text:'Set marker', onClick:myOnClick},
 				{icon:'calculator', onClick:myOnClick, disabled:true},
 				{icon:'ban', hoverColor:'red', onClick:myOnClick},
 				{id:'folder', icon:'folder-o', selectedIcon: 'folder-open-o', onClick:myOnClick},
-			]
-		});
+			],
+			myButtonGroup = new L.Control.ButtonGroup({
+				horizontal:true,
+				buttons: myButtons
+			}),
+			myButtonGroup2 = new L.Control.ButtonGroup({
+				horizontal:true,
+				separatButtons: true,
+				buttons: myButtons
+			});
+
+
 		myButtonGroup.addTo(map);
+		myButtonGroup2.addTo(map);
 
 		myButtonGroup.selectButton('folder');
 	</script>

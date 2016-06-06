@@ -23,6 +23,7 @@ http://FCOO.github.io/leaflet-control-button-group/demo/
 | :--: | :--: | :-----: | --- |
 | position | string | 'topleft' | Leaflet control position | 
 | horizontal | boolean | false | If true the buttons are horizontal aligned |
+| separatButtons | boolean | false | If true the buttons are created as separat buttons (only when `options.horizontal=true`) |
 | className | string | '' | Extra class-name(s) for the control-container |
 | buttons | array | [] | array of `buttonOptions` |
 
