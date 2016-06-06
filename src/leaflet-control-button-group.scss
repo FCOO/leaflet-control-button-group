@@ -52,7 +52,6 @@ Adjustments to give leaflet a bootstrap-like look
 
 		$leaflet-touch-font-factor: 24/20;
 		$leaflet-touch-dim-factor : 30/26;
-
 		color	: $normal-color; 
 		cursor: pointer;
 		
@@ -122,10 +121,15 @@ Adjustments to give leaflet a bootstrap-like look
 	} //end of .leaflet-bar a
 
 	//Horizontal 
-	&.horizontal {
+	&.horizontal { 
+		text-align: center;
+		a {
+			display: inline-block;
+			vertical-align: middle;
+		}
+
 		&.separat a {
-			float					: left;
-			border: 1px solid #ccc;
+			border				: 1px solid #ccc;
 		  border-radius: 4px;
 			&:hover	{ border-color: #adadad; }
 			margin-right: 4px;
@@ -133,7 +137,6 @@ Adjustments to give leaflet a bootstrap-like look
 		}
 
 		&:not(.separat) a {
-			float					: left;
 			border-bottom	: none;
 			border-right	: 1px solid #ccc;	
 

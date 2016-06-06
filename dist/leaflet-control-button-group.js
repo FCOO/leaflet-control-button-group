@@ -34,7 +34,7 @@
 
     //Default options
 		options: {
-			VERSION		: "0.3.0",
+			VERSION		: "0.3.1",
       position	: 'topleft',
 			horizontal: false,
 			buttons		: [],
@@ -123,7 +123,6 @@
 
 			if (options.selected)
 				this._selectButton( $link[0], true );
-
 			return $link;
     },
 

@@ -123,7 +123,6 @@
 
 			if (options.selected)
 				this._selectButton( $link[0], true );
-
 			return $link;
     },
 
