@@ -35,12 +35,12 @@
 
     //Default options
 		options: {
-			VERSION					: "0.6.0",
+			VERSION					: "0.6.1",
       position				: 'topleft',
 			horizontal			: false,
 			small						: false,
 			separateButtons	: false,
-			centerText			: true,//false,
+			centerText			: false,
 			equalWidth			: false,
 			buttons					: [],
 			className				: ''
@@ -112,7 +112,7 @@
 					if (options.hoverColor)
 						$i.css('color', options.hoverColor);
 				}
-				$link.append( options.text.replace(/ /g, "&nbsp;") );//options.text );
+				$link.append( options.text.replace(/ /g, "&nbsp;") );
 			}
 			else {
 				$link.addClass( 'fa fa-'+options.icon );
