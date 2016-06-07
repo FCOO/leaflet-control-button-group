@@ -15,7 +15,7 @@
 </head>
 
 <body>
-	<div id="map" style="width: 800px; height: 600px"></div>
+	<div id="map" style="width: 600px; height: 400px"></div>
 
 
 	
@@ -42,14 +42,39 @@
 			}),
 			myButtonGroup2 = new L.Control.ButtonGroup({
 				horizontal:true,
-				separatButtons: true,
+				separateButtons: true,
 				small: true,
+				equalWidth: true,
 				buttons: myButtons
+			}),
+			myButtons2 = [
+				{icon:'map-marker '	, text:'Set marker'	, onClick:myOnClick},
+				{icon:'calculator'	, text:'Calculator'	, onClick:myOnClick, disabled:true},
+				{icon:'ban'					, text:'Cancel'			, onClick:myOnClick},
+				{icon:'folder-o'		, text:'Folder'			,	selectedIcon: 'folder-open-o', onClick:myOnClick},
+			],
+			myButtonGroup3 = new L.Control.ButtonGroup({
+				position: 'topright', 
+				horizontal:false,
+				buttons: myButtons2
+			}),
+			myButtonGroup4 = new L.Control.ButtonGroup({
+				position: 'bottomright', 
+				horizontal:false,
+				separateButtons: true,
+				small: true,
+				equalWidth: true,
+				buttons: myButtons2
 			});
+
+
 
 
 		myButtonGroup.addTo(map);
 		myButtonGroup2.addTo(map);
+		myButtonGroup3.addTo(map);
+		myButtonGroup4.addTo(map);
+
 
 		myButtonGroup.selectButton('folder');
 	</script>

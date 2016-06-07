@@ -22,7 +22,7 @@
 Dim and font-size etc. for the tree different modes. .leaflet-touch.small == normal
 **********************/
 
-$height					: 26px;
+$height-width		: 26px;
 $icon-font-size	: 16px;
 $text-font-size	: 14px;
 
@@ -34,34 +34,35 @@ $leaflet-small-dim-factor : 20/26;
 
 .leaflet-bar,
 .leaflet-touch .small.leaflet-bar {
-	a				{ height				: $height; 
-						line-height		: $height;					}
+	a				{ height				: $height-width; 
+						line-height		: $height-width;		}
 	a.fa		{ font-size			: $icon-font-size;	}
 	a.text	{ font-size			: $text-font-size;
 						padding-right	: 5px;							}
-	a.text i {	width				: $height;
-							line-height	: $height; 
+	a.text i {	width				: $height-width;
+							line-height	: $height-width; 
 							font-size		: $icon-font-size;	}
 }
 
 .small.leaflet-bar {
-	a				{ height			: $leaflet-small-dim-factor*$height; 
-						line-height	: $leaflet-small-dim-factor*$height;						}
-	a.fa		{ font-size			: $leaflet-small-font-factor*$icon-font-size;	}
+	a				{ height				: $leaflet-small-dim-factor*$height-width; 
+						line-height		: $leaflet-small-dim-factor*$height-width;		}
+	a.fa		{ width					: $leaflet-small-dim-factor*$height-width;
+						font-size			: $leaflet-small-font-factor*$icon-font-size;	}
 	a.text	{ font-size			: $leaflet-small-font-factor*$text-font-size;
 						padding-right	: 4px;																				}
-	a.text i {	width				: $leaflet-small-dim-factor*$height;
-							line-height	: $leaflet-small-dim-factor*$height; 
-							font-size		: $leaflet-small-font-factor*$icon-font-size;		}
+	a.text i {	width					: $leaflet-small-dim-factor*$height-width;
+							line-height		: $leaflet-small-dim-factor*$height-width; 
+							font-size			: $leaflet-small-font-factor*$icon-font-size;	}
 }
 
 .leaflet-touch .leaflet-bar {
 	a.fa		{ font-size			: $leaflet-touch-font-factor*$icon-font-size;	}
 	a.text	{ font-size			: $leaflet-touch-font-factor*$text-font-size;
 						padding-right	: 8px;																				}
-	a.text i {	width				: $leaflet-touch-dim-factor*$height;
-							line-height	: $leaflet-touch-dim-factor*$height; 
-							font-size		: $leaflet-touch-font-factor*$icon-font-size;		}
+	a.text i {	width					: $leaflet-touch-dim-factor*$height-width;
+							line-height		: $leaflet-touch-dim-factor*$height-width; 
+							font-size			: $leaflet-touch-font-factor*$icon-font-size;	}
 }
 
 
@@ -150,7 +151,7 @@ Adjustments to give leaflet a bootstrap-like look
 			vertical-align: middle;
 		}
 
-		&.separat a {
+		&.separate a {
 			border				: 1px solid #ccc;
 		  border-radius: 4px;
 			&:hover	{ border-color: #adadad; }
@@ -158,7 +159,7 @@ Adjustments to give leaflet a bootstrap-like look
 			&:last-child {	margin-right: 0px;	}
 		}
 
-		&:not(.separat) a {
+		&:not(.separate) a {
 			border-bottom	: none;
 			border-right	: 1px solid #ccc;	
 

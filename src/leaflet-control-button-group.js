@@ -7,6 +7,7 @@
 	https://github.com/FCOO
 
 ****************************************************************************/
+
 ;(function ($, L, window, document, undefined) {
 	"use strict";
 
@@ -34,19 +35,21 @@
 
     //Default options
 		options: {
-			VERSION		: "{VERSION}",
-      position	: 'topleft',
-			horizontal: false,
-			small			: false,
-			buttons		: [],
-			className	: ''
+			VERSION					: "{VERSION}",
+      position				: 'topleft',
+			horizontal			: false,
+			small						: false,
+			separateButtons	: false,
+			equalWidth			: false,
+			buttons					: [],
+			className				: ''
 		},
 
-		buttons: [],	//List of buttons as html-element - both bottons[index] and button8id]
 
 		//initialize
 		initialize: function(options) {
 			L.setOptions(this, options);
+			this.buttons = []; //List of buttons as html-element - both bottons[index] and button8id]
 		},
 
 		onAdd: function (map) {
@@ -59,7 +62,7 @@
 		addButtons: function(){
 			this._container = L.DomUtil.create('div',
 				'leaflet-bar '+
-				(this.options.separatButtons ? 'separat ' : '') +
+				(this.options.separateButtons ? 'separate ' : '') +
 				(this.options.horizontal ? 'horizontal ' : '') +
 				(this.options.small ? 'small ' : '') +
 				this.options.className
@@ -77,6 +80,9 @@
 			this.buttons.push( button );
 			if (options.id)
 				this.buttons[ options.id ] = button;
+
+			if (this.options.equalWidth)
+			  this._checkWidth();
 		},
 
 		//_createButton
@@ -130,8 +136,36 @@
 
 			if (options.selected)
 				this._selectButton( $link[0], true );
+
 			return $link;
     },
+
+		//_checkWidth - check if the width of all buttons is known and set all buttons to max-width (if options.equalWidth = true )
+		_checkWidth: function(){
+			if (this.intervalId)
+				return;
+			this.intervalId = window.setInterval( $.proxy( this._checkAllWidth, this ), 100 );
+
+		},
+		_checkAllWidth: function(){
+			var i, width, allWidthSet = true, maxWidth = 0;
+			for (i=0; i<this.buttons.length; i++ ){
+				width = $(this.buttons[i]).width();
+				if (width)
+				  maxWidth = Math.max( maxWidth, width );
+				else {
+					allWidthSet = false;
+					break;
+				}
+				
+			}
+			if (allWidthSet){
+			  clearInterval(this.intervalId);
+				this.intervalId = null;
+				for (i=0; i<this.buttons.length; i++ )
+					$(this.buttons[i]).width( maxWidth );
+			}
+		},
 
 		//_onClick
 		_onClick: function( e ){
@@ -172,8 +206,9 @@
 				this._buttonToggleClass( button, 'selected', selected );
 				options = $button.data('button');
 					if (options.selectedIcon){
-						this._buttonToggleClass( button, 'fa-' + options.icon,				 !selected );
-						this._buttonToggleClass( button, 'fa-' + options.selectedIcon,  selected );
+						var iconElem = options.text ? button.firstChild : button;
+						this._buttonToggleClass( iconElem, 'fa-' + options.icon,				 !selected );
+						this._buttonToggleClass( iconElem, 'fa-' + options.selectedIcon,  selected );
 					}
 				options.onClick( button, this._map, selected );
 			}

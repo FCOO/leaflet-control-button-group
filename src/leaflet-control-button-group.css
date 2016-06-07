@@ -14,50 +14,54 @@ Dim and font-size etc. for the tree different modes. .leaflet-touch.small == nor
 .leaflet-bar a,
 .leaflet-touch .small.leaflet-bar a {
   height: 26px;
-  line-height: 26px; }
-
+  line-height: 26px;
+}
 .leaflet-bar a.fa,
 .leaflet-touch .small.leaflet-bar a.fa {
-  font-size: 16px; }
-
+  font-size: 16px;
+}
 .leaflet-bar a.text,
 .leaflet-touch .small.leaflet-bar a.text {
   font-size: 14px;
-  padding-right: 5px; }
-
+  padding-right: 5px;
+}
 .leaflet-bar a.text i,
 .leaflet-touch .small.leaflet-bar a.text i {
   width: 26px;
   line-height: 26px;
-  font-size: 16px; }
+  font-size: 16px;
+}
 
 .small.leaflet-bar a {
   height: 20px;
-  line-height: 20px; }
-
+  line-height: 20px;
+}
 .small.leaflet-bar a.fa {
-  font-size: 13.7142857143px; }
-
+  width: 20px;
+  font-size: 13.71429px;
+}
 .small.leaflet-bar a.text {
   font-size: 12px;
-  padding-right: 4px; }
-
+  padding-right: 4px;
+}
 .small.leaflet-bar a.text i {
   width: 20px;
   line-height: 20px;
-  font-size: 13.7142857143px; }
+  font-size: 13.71429px;
+}
 
 .leaflet-touch .leaflet-bar a.fa {
-  font-size: 19.2px; }
-
+  font-size: 19.2px;
+}
 .leaflet-touch .leaflet-bar a.text {
   font-size: 16.8px;
-  padding-right: 8px; }
-
+  padding-right: 8px;
+}
 .leaflet-touch .leaflet-bar a.text i {
-  width: 30px;
-  line-height: 30px;
-  font-size: 19.2px; }
+  width: 30.0px;
+  line-height: 30.0px;
+  font-size: 19.2px;
+}
 
 /**********************
 Adjustments to give leaflet a bootstrap-like look
@@ -68,67 +72,90 @@ Adjustments to give leaflet a bootstrap-like look
   -ms-user-select: none;
   user-select: none;
   /*******************
-	Anchor 
-	********************/ }
-  .leaflet-bar hr {
-    margin: 0;
-    border-bottom-width: 2px;
-    border-top-width: 2px; }
-  .leaflet-bar a {
-    color: #444;
-    cursor: pointer; }
-    .leaflet-bar a:not(:hover):not(.selected) {
-      color: #444 !important; }
-      .leaflet-bar a:not(:hover):not(.selected) i {
-        color: #444 !important; }
-    .leaflet-bar a.leaflet-disabled, .leaflet-bar a[disabled] {
-      cursor: default;
-      opacity: 0.4;
-      pointer-events: none; }
-    .leaflet-bar a:hover {
-      color: black;
-      background-color: #e6e6e6; }
-    .leaflet-bar a:active {
-      color: black;
-      background-color: #bdbdbd; }
-    .leaflet-bar a.selected {
-      color: black;
-      background-color: #d1d1d1; }
-      .leaflet-bar a.selected:hover {
-        background-color: #b8b8b8; }
-      .leaflet-bar a.selected:active {
-        background-color: #9e9e9e; }
-    .leaflet-bar a.text {
-      font-family: proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif;
-      text-align: left;
-      padding-left: 0px;
-      width: auto; }
-      .leaflet-bar a.text i {
-        margin: 0px;
-        text-align: center;
-        vertical-align: 0; }
-  .leaflet-bar.horizontal {
-    text-align: center; }
-    .leaflet-bar.horizontal a {
-      display: inline-block;
-      vertical-align: middle; }
-    .leaflet-bar.horizontal.separat a {
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      margin-right: 4px; }
-      .leaflet-bar.horizontal.separat a:hover {
-        border-color: #adadad; }
-      .leaflet-bar.horizontal.separat a:last-child {
-        margin-right: 0px; }
-    .leaflet-bar.horizontal:not(.separat) a {
-      border-bottom: none;
-      border-right: 1px solid #ccc; }
-      .leaflet-bar.horizontal:not(.separat) a:first-child {
-        border-radius: 0px;
-        border-top-left-radius: 4px;
-        border-bottom-left-radius: 4px; }
-      .leaflet-bar.horizontal:not(.separat) a:last-child {
-        border-radius: 0px;
-        border-top-right-radius: 4px;
-        border-bottom-right-radius: 4px;
-        border-right: medium none; }
+  Anchor 
+  ********************/
+}
+.leaflet-bar hr {
+  margin: 0;
+  border-bottom-width: 2px;
+  border-top-width: 2px;
+}
+.leaflet-bar a {
+  color: #444;
+  cursor: pointer;
+}
+.leaflet-bar a:not(:hover):not(.selected) {
+  color: #444 !important;
+}
+.leaflet-bar a:not(:hover):not(.selected) i {
+  color: #444 !important;
+}
+.leaflet-bar a.leaflet-disabled, .leaflet-bar a[disabled] {
+  cursor: default;
+  opacity: 0.4;
+  pointer-events: none;
+}
+.leaflet-bar a:hover {
+  color: black;
+  background-color: #e6e6e6;
+}
+.leaflet-bar a:active {
+  color: black;
+  background-color: #bdbdbd;
+}
+.leaflet-bar a.selected {
+  color: black;
+  background-color: #d1d1d1;
+}
+.leaflet-bar a.selected:hover {
+  background-color: #b8b8b8;
+}
+.leaflet-bar a.selected:active {
+  background-color: #9e9e9e;
+}
+.leaflet-bar a.text {
+  font-family: proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  text-align: left;
+  padding-left: 0px;
+  width: auto;
+}
+.leaflet-bar a.text i {
+  margin: 0px;
+  text-align: center;
+  vertical-align: 0;
+}
+.leaflet-bar.horizontal {
+  text-align: center;
+}
+.leaflet-bar.horizontal a {
+  display: inline-block;
+  vertical-align: middle;
+}
+.leaflet-bar.horizontal.separate a {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 4px;
+}
+.leaflet-bar.horizontal.separate a:hover {
+  border-color: #adadad;
+}
+.leaflet-bar.horizontal.separate a:last-child {
+  margin-right: 0px;
+}
+.leaflet-bar.horizontal:not(.separate) a {
+  border-bottom: none;
+  border-right: 1px solid #ccc;
+}
+.leaflet-bar.horizontal:not(.separate) a:first-child {
+  border-radius: 0px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+.leaflet-bar.horizontal:not(.separate) a:last-child {
+  border-radius: 0px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-right: medium none;
+}
+
+/*# sourceMappingURL=leaflet-control-button-group.css.map */
