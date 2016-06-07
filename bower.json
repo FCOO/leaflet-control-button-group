@@ -1,14 +1,14 @@
 {
   "name": "leaflet-control-button-group",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "homepage": "https://github.com/FCOO/leaflet-control-button-group",
   "authors": [
     "NielsHolt"
   ],
   "description": "",
   "main": [
-    "dist/leaflet-control-button-group.min.js",
-    "dist/leaflet-control-button-group.min.css"
+    "dist/leaflet-control-button-group.js",
+    "dist/leaflet-control-button-group.css"
   ],
   "repository": {
     "type": "git",

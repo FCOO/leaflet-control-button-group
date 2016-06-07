@@ -149,17 +149,6 @@ Adjustments to give leaflet a bootstrap-like look
 		a {
 			display: inline-block;
 			vertical-align: middle;
-		}
-
-		&.separate a {
-			border				: 1px solid #ccc;
-		  border-radius: 4px;
-			&:hover	{ border-color: #adadad; }
-			margin-right: 4px;
-			&:last-child {	margin-right: 0px;	}
-		}
-
-		&:not(.separate) a {
 			border-bottom	: none;
 			border-right	: 1px solid #ccc;	
 
@@ -176,5 +165,28 @@ Adjustments to give leaflet a bootstrap-like look
 			}
 		} 
 	} //end of .leaflet-bar.horizontal
+
+	&.separate {
+		a {
+			border				: 1px solid #ccc !important;
+		  border-radius	: 4px !important;
+			&:hover	{ border-color: #adadad; }
+		}
+		
+		//Separate AND horizontal
+		&.horizontal a {
+			margin-right: 4px;
+			&:last-child {	margin-right: 0px;	}
+		}
+
+		//Separate AND vertival
+		&:not(.horizontal) a {
+			margin-bottom: 4px;
+			&:last-child {	margin-bottom: 0px;	}
+		}
+	
+	} //end of .leaflet-bar.separate
+
+
 
 } //end of .leaflet-bar

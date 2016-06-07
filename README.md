@@ -24,7 +24,7 @@ http://FCOO.github.io/leaflet-control-button-group/demo/
 | position | string | 'topleft' | Leaflet control position | 
 | horizontal | boolean | false | If true the buttons are horizontal aligned |
 | small | boolean | false | If true the buttons are created in a smaller size |
-| separateButtons | boolean | false | If true the buttons are created as separate buttons (only when `options.horizontal=true`) |
+| separateButtons | boolean | false | If true the buttons are created as separate buttons |
 | equalWidth | boolean | false | If true the buttons will be equal width. Works best if all buttos have `options.text != ""` |
 | className | string | '' | Extra class-name(s) for the control-container |
 | buttons | array | [] | array of `buttonOptions` |
