@@ -26,6 +26,11 @@ $height-width		: 26px;
 $icon-font-size	: 16px;
 $text-font-size	: 14px;
 
+$leaflet-small-padding: 4px;
+$leaflet-padding			: 5px;
+$leaflet-touch-padding: 8px;
+
+
 $leaflet-touch-font-factor: 24/20;
 $leaflet-touch-dim-factor : 30/26;
 
@@ -38,10 +43,12 @@ $leaflet-small-dim-factor : 20/26;
 						line-height		: $height-width;		}
 	a.fa		{ font-size			: $icon-font-size;	}
 	a.text	{ font-size			: $text-font-size;
-						padding-right	: 5px;							}
-	a.text i {	width				: $height-width;
-							line-height	: $height-width; 
-							font-size		: $icon-font-size;	}
+						padding-left	: $leaflet-padding;							
+						padding-right	: $leaflet-padding;	}
+
+	a.text i {	padding-right	: $leaflet-padding;
+							line-height		: $height-width; 
+							font-size			: $icon-font-size;	}
 }
 
 .small.leaflet-bar {
@@ -50,8 +57,9 @@ $leaflet-small-dim-factor : 20/26;
 	a.fa		{ width					: $leaflet-small-dim-factor*$height-width;
 						font-size			: $leaflet-small-font-factor*$icon-font-size;	}
 	a.text	{ font-size			: $leaflet-small-font-factor*$text-font-size;
-						padding-right	: 4px;																				}
-	a.text i {	width					: $leaflet-small-dim-factor*$height-width;
+						padding-left	: $leaflet-small-padding;							
+						padding-right	: $leaflet-small-padding;											}
+	a.text i {	padding-right	: $leaflet-small-padding;
 							line-height		: $leaflet-small-dim-factor*$height-width; 
 							font-size			: $leaflet-small-font-factor*$icon-font-size;	}
 }
@@ -59,8 +67,9 @@ $leaflet-small-dim-factor : 20/26;
 .leaflet-touch .leaflet-bar {
 	a.fa		{ font-size			: $leaflet-touch-font-factor*$icon-font-size;	}
 	a.text	{ font-size			: $leaflet-touch-font-factor*$text-font-size;
-						padding-right	: 8px;																				}
-	a.text i {	width					: $leaflet-touch-dim-factor*$height-width;
+						padding-left	: $leaflet-touch-padding;							
+						padding-right	: $leaflet-touch-padding;											}
+	a.text i {	padding-right	: $leaflet-touch-padding;
 							line-height		: $leaflet-touch-dim-factor*$height-width; 
 							font-size			: $leaflet-touch-font-factor*$icon-font-size;	}
 }
@@ -132,9 +141,7 @@ Adjustments to give leaflet a bootstrap-like look
 		&.text {
 			font-family	: proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif; //Same font-family as bootstrap
 			text-align	: left;
-
-			padding-left	: 0px;
-			width					: auto;
+			width				: auto;
 			i { 
 				margin				: 0px;
 				text-align		: center;
@@ -142,6 +149,11 @@ Adjustments to give leaflet a bootstrap-like look
 			}
 		} //end of .leaflet-bar a.text
 	} //end of .leaflet-bar a
+
+	//Center text-buttons
+	&.center-text a {
+		text-align: center;
+	}
 
 	//Horizontal 
 	&.horizontal { 

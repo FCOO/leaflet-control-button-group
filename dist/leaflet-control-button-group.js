@@ -35,11 +35,12 @@
 
     //Default options
 		options: {
-			VERSION					: "0.5.0",
+			VERSION					: "0.6.0",
       position				: 'topleft',
 			horizontal			: false,
 			small						: false,
 			separateButtons	: false,
+			centerText			: true,//false,
 			equalWidth			: false,
 			buttons					: [],
 			className				: ''
@@ -63,8 +64,9 @@
 			this._container = L.DomUtil.create('div',
 				'leaflet-bar '+
 				(this.options.separateButtons ? 'separate ' : '') +
-				(this.options.horizontal ? 'horizontal ' : '') +
-				(this.options.small ? 'small ' : '') +
+				(this.options.centerText			? 'center-text ' : '') +
+				(this.options.horizontal			? 'horizontal ' : '') +
+				(this.options.small						? 'small ' : '') +
 				this.options.className
 			);
       L.DomEvent.disableClickPropagation( this._container );
@@ -110,7 +112,7 @@
 					if (options.hoverColor)
 						$i.css('color', options.hoverColor);
 				}
-				$link.append( options.text );
+				$link.append( options.text.replace(/ /g, "&nbsp;") );//options.text );
 			}
 			else {
 				$link.addClass( 'fa fa-'+options.icon );

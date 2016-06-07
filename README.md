@@ -26,6 +26,7 @@ http://FCOO.github.io/leaflet-control-button-group/demo/
 | small | boolean | false | If true the buttons are created in a smaller size |
 | separateButtons | boolean | false | If true the buttons are created as separate buttons |
 | equalWidth | boolean | false | If true the buttons will be equal width. Works best if all buttos have `options.text != ""` |
+| centerText | boolean | false | If true the icon and text in the buttons will be centered |
 | className | string | '' | Extra class-name(s) for the control-container |
 | buttons | array | [] | array of `buttonOptions` |
 

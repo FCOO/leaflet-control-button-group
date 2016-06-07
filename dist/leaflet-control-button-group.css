@@ -23,11 +23,12 @@ Dim and font-size etc. for the tree different modes. .leaflet-touch.small == nor
 .leaflet-bar a.text,
 .leaflet-touch .small.leaflet-bar a.text {
   font-size: 14px;
+  padding-left: 5px;
   padding-right: 5px; }
 
 .leaflet-bar a.text i,
 .leaflet-touch .small.leaflet-bar a.text i {
-  width: 26px;
+  padding-right: 5px;
   line-height: 26px;
   font-size: 16px; }
 
@@ -41,10 +42,11 @@ Dim and font-size etc. for the tree different modes. .leaflet-touch.small == nor
 
 .small.leaflet-bar a.text {
   font-size: 12px;
+  padding-left: 4px;
   padding-right: 4px; }
 
 .small.leaflet-bar a.text i {
-  width: 20px;
+  padding-right: 4px;
   line-height: 20px;
   font-size: 13.7142857143px; }
 
@@ -53,10 +55,11 @@ Dim and font-size etc. for the tree different modes. .leaflet-touch.small == nor
 
 .leaflet-touch .leaflet-bar a.text {
   font-size: 16.8px;
+  padding-left: 8px;
   padding-right: 8px; }
 
 .leaflet-touch .leaflet-bar a.text i {
-  width: 30px;
+  padding-right: 8px;
   line-height: 30px;
   font-size: 19.2px; }
 
@@ -102,12 +105,13 @@ Adjustments to give leaflet a bootstrap-like look
     .leaflet-bar a.text {
       font-family: proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif;
       text-align: left;
-      padding-left: 0px;
       width: auto; }
       .leaflet-bar a.text i {
         margin: 0px;
         text-align: center;
         vertical-align: 0; }
+  .leaflet-bar.center-text a {
+    text-align: center; }
   .leaflet-bar.horizontal {
     text-align: center; }
     .leaflet-bar.horizontal a {
