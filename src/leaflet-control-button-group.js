@@ -22,6 +22,7 @@
 		separatorBefore	: false,
 		hoverColor			: null,
 		title						: '',
+		className				: '',
 		href						: '',
 		onClick					: function(){}, //function( button, map, selected );
 		context					: null
@@ -98,7 +99,7 @@
 			options.onClick = $.proxy( options.onClick, options.context );
 			var $i,
 					$link = $('<a>')
-									.addClass( (options.disabled ? ' leaflet-disabled' : '') )
+									.addClass( (options.disabled ? ' leaflet-disabled ' : '') + options.className )
 									.data('button', options);
 
 			if (options.text){
@@ -159,7 +160,7 @@
 					allWidthSet = false;
 					break;
 				}
-				
+
 			}
 			if (allWidthSet){
 			  clearInterval(this.intervalId);
