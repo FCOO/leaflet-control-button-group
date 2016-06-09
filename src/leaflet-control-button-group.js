@@ -23,6 +23,7 @@
 		hoverColor			: null,
 		title						: '',
 		className				: '',
+		attr						: null,
 		href						: '',
 		onClick					: function(){}, //function( button, map, selected );
 		context					: null
@@ -99,8 +100,10 @@
 			options.onClick = $.proxy( options.onClick, options.context );
 			var $i,
 					$link = $('<a>')
-									.addClass( (options.disabled ? ' leaflet-disabled ' : '') + options.className )
+									.addClass( (options.disabled ? 'leaflet-disabled ' : '') + options.className )
+									.attr( options.attr )
 									.data('button', options);
+
 
 			if (options.text){
 				$link.addClass('text');

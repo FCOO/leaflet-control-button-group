@@ -44,6 +44,8 @@ selectedIcon | string | '' | The fontawesome icon-name to be used when the butto
 separatorBefore | boolean | false | Only if `options.horizontal = false`: Adds a horizontal separator before the button |
 hoverColor | string | null | Color for the icon, when the mouse is over the button and when the button is selected |
 title | string | '' | The `title`-attribute of the button |
+| className | string | '' | Extra class-name(s) for the button |
+| attr | object | null | attributes for the button (object of attribute-value pairs) |
 href | string | '' | If the button should link to another page  |
 onClick | function | null | function( button, map, selected ) called when a button is clicked |
 context | object | null | The context of the `onClick`-function (`context` will be refferent to by `this` inside `onClick`) |
