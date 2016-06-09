@@ -23,8 +23,9 @@
 		hoverColor			: null,
 		title						: '',
 		className				: '',
+		attr						: {},
 		href						: '',
-		onClick					: function(){}, //function( button, map, selected );
+		onClick					: function(){}, //function( onClickObj );
 		context					: null
 	};
 
@@ -36,7 +37,7 @@
 
     //Default options
 		options: {
-			VERSION					: "0.7.0",
+			VERSION					: "0.8.1",
       position				: 'topleft',
 			horizontal			: false,
 			small						: false,
@@ -44,7 +45,8 @@
 			centerText			: false,
 			equalWidth			: false,
 			buttons					: [],
-			className				: ''
+			className				: '',
+			onClickObj			: {}
 		},
 
 
@@ -99,7 +101,8 @@
 			options.onClick = $.proxy( options.onClick, options.context );
 			var $i,
 					$link = $('<a>')
-									.addClass( (options.disabled ? ' leaflet-disabled ' : '') + options.className )
+									.addClass( (options.disabled ? 'leaflet-disabled ' : '') + options.className )
+									.attr( options.attr )
 									.data('button', options);
 
 			if (options.text){
@@ -170,6 +173,11 @@
 			}
 		},
 
+		//_getOnClickObj
+		_getOnClickObj: function( id, button, selected ){
+			return L.extend({}, this.options.onClickObj, {id: id, map: this._map, button: button, selected: selected});
+		},
+
 		//_onClick
 		_onClick: function( e ){
 			var button = e.currentTarget,
@@ -178,7 +186,7 @@
 			if (options.selectable)
 				this._selectButton( button, !$button.hasClass('selected') );
 			else {
-				options.onClick( button, this._map, null );
+				options.onClick( this._getOnClickObj(options.id, button, null) );
 			}
 		},
 
@@ -213,7 +221,7 @@
 						this._buttonToggleClass( iconElem, 'fa-' + options.icon,				 !selected );
 						this._buttonToggleClass( iconElem, 'fa-' + options.selectedIcon,  selected );
 					}
-				options.onClick( button, this._map, selected );
+				options.onClick( this._getOnClickObj(options.id, button, selected) );
 			}
 		},
 
