@@ -23,8 +23,8 @@
 	<script src="bower_components.js"></script>
 	<script src="../src/leaflet-control-button-group.js"></script>
 	<script>
-		function myOnClick( button, map, selected ){
-			console.log( button, map, selected );
+		function myOnClick( onClickObj ){
+			console.log( onClickObj );
 		}
 
 		var map = L.map('map').setView([56.2, 11.5], 6);

@@ -28,27 +28,32 @@ http://FCOO.github.io/leaflet-control-button-group/demo/
 | equalWidth | boolean | false | If true the buttons will be equal width. Works best if all buttos have `options.text != ""` |
 | centerText | boolean | false | If true the icon and text in the buttons will be centered |
 | className | string | '' | Extra class-name(s) for the control-container |
+| onClickObj | object | {} | The common part of the object passed to the onClick-function |
 | buttons | array | [] | array of `buttonOptions` |
 
 ### buttonOptions
 
 | Id | Type | Default | Description |
 | :--: | :--: | :-----: | --- |
-id | string | '' | The id of the button |
-icon | string | 'help' | The fontawesome icon-name without leading `fa-` |
-text | string | '' | The text next to the icon |
-disabled | boolean | false | If `true` the button is disabled |
-selectable | boolean | false | If `true` the button is selectable |
-selected | boolean | false | If `true` the button is selected AND selectable |
-selectedIcon | string | '' | The fontawesome icon-name to be used when the button is selected  |
-separatorBefore | boolean | false | Only if `options.horizontal = false`: Adds a horizontal separator before the button |
-hoverColor | string | null | Color for the icon, when the mouse is over the button and when the button is selected |
-title | string | '' | The `title`-attribute of the button |
-| className | string | '' | Extra class-name(s) for the button |
-| attr | object | null | attributes for the button (object of attribute-value pairs) |
-href | string | '' | If the button should link to another page  |
-onClick | function | null | function( button, map, selected ) called when a button is clicked |
-context | object | null | The context of the `onClick`-function (`context` will be refferent to by `this` inside `onClick`) |
+id | `string` | '' | The id of the button |
+icon | `string` | 'help' | The fontawesome icon-name without leading `fa-` |
+text | `string` | '' | The text next to the icon |
+disabled | `boolean` | false | If `true` the button is disabled |
+selectable | `boolean` | false | If `true` the button is selectable |
+selected | `boolean` | false | If `true` the button is selected AND selectable |
+selectedIcon | `string` | '' | The fontawesome icon-name to be used when the button is selected  |
+separatorBefore | `boolean` | false | Only if `options.horizontal = false`: Adds a horizontal separator before the button |
+hoverColor | `string` | null | Color for the icon, when the mouse is over the button and when the button is selected |
+title | `string` | '' | The `title`-attribute of the button |
+| className | `string` | '' | Extra class-name(s) for the button |
+| attr | `object` | null | attributes for the button (object of attribute-value pairs) |
+href | `string` | '' | If the button should link to another page  |
+onClick | `function( onClickObj )` | null | function called when a button is clicked `onClickObj`: object with button-info (see below)  |
+context | `object` | null | The context of the `onClick`-function (`context` will be refferent to by `this` inside `onClick`) |
+
+### onClickObj
+The object passed to the onClick-functions contains:
+`{id, map, button, selected}`
 
 ### Methods
 

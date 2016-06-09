@@ -23,9 +23,9 @@
 		hoverColor			: null,
 		title						: '',
 		className				: '',
-		attr						: null,
+		attr						: {},
 		href						: '',
-		onClick					: function(){}, //function( button, map, selected );
+		onClick					: function(){}, //function( onClickObj );
 		context					: null
 	};
 
@@ -45,7 +45,8 @@
 			centerText			: false,
 			equalWidth			: false,
 			buttons					: [],
-			className				: ''
+			className				: '',
+			onClickObj			: {}
 		},
 
 
@@ -103,7 +104,6 @@
 									.addClass( (options.disabled ? 'leaflet-disabled ' : '') + options.className )
 									.attr( options.attr )
 									.data('button', options);
-
 
 			if (options.text){
 				$link.addClass('text');
@@ -173,6 +173,11 @@
 			}
 		},
 
+		//_getOnClickObj
+		_getOnClickObj: function( id, button, selected ){ console.log('id=',id);
+			return L.extend({}, this.options.onClickObj, {id: id, map: this._map, button: button, selected: selected});
+		},
+
 		//_onClick
 		_onClick: function( e ){
 			var button = e.currentTarget,
@@ -181,7 +186,7 @@
 			if (options.selectable)
 				this._selectButton( button, !$button.hasClass('selected') );
 			else {
-				options.onClick( button, this._map, null );
+				options.onClick( this._getOnClickObj(options.id, button, null) );
 			}
 		},
 
@@ -216,7 +221,7 @@
 						this._buttonToggleClass( iconElem, 'fa-' + options.icon,				 !selected );
 						this._buttonToggleClass( iconElem, 'fa-' + options.selectedIcon,  selected );
 					}
-				options.onClick( button, this._map, selected );
+				options.onClick( this._getOnClickObj(options.id, button, selected) );
 			}
 		},
 
