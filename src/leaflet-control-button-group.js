@@ -65,7 +65,7 @@
 		//addButtons
 		addButtons: function(){
 			this._container = L.DomUtil.create('div',
-				'leaflet-bar '+
+				'leaflet-bar leaflet-control-button-group '+
 				(this.options.separateButtons ? 'separate ' : '') +
 				(this.options.centerText			? 'center-text ' : '') +
 				(this.options.horizontal			? 'horizontal ' : '') +

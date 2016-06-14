@@ -37,8 +37,8 @@ $leaflet-touch-dim-factor : 30/26;
 $leaflet-small-font-factor: 12/14;
 $leaflet-small-dim-factor : 20/26;
 
-.leaflet-bar,
-.leaflet-touch .small.leaflet-bar {
+.leaflet-control-button-group,
+.leaflet-touch .small.leaflet-control-button-group {
 	a				{ height				: $height-width; 
 						line-height		: $height-width;		}
 	a.fa		{ font-size			: $icon-font-size;	}
@@ -51,7 +51,7 @@ $leaflet-small-dim-factor : 20/26;
 							font-size			: $icon-font-size;	}
 }
 
-.small.leaflet-bar {
+.small.leaflet-control-button-group {
 	a				{ height				: $leaflet-small-dim-factor*$height-width; 
 						line-height		: $leaflet-small-dim-factor*$height-width;		}
 	a.fa		{ width					: $leaflet-small-dim-factor*$height-width;
@@ -64,7 +64,7 @@ $leaflet-small-dim-factor : 20/26;
 							font-size			: $leaflet-small-font-factor*$icon-font-size;	}
 }
 
-.leaflet-touch .leaflet-bar {
+.leaflet-touch .leaflet-control-button-group {
 	a.fa		{ font-size			: $leaflet-touch-font-factor*$icon-font-size;	}
 	a.text	{ font-size			: $leaflet-touch-font-factor*$text-font-size;
 						padding-left	: $leaflet-touch-padding;							
@@ -79,7 +79,7 @@ $leaflet-small-dim-factor : 20/26;
 /**********************
 Adjustments to give leaflet a bootstrap-like look
 **********************/
-.leaflet-bar {
+.leaflet-control-button-group {
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -147,8 +147,8 @@ Adjustments to give leaflet a bootstrap-like look
 				text-align		: center;
 				vertical-align: 0;
 			}
-		} //end of .leaflet-bar a.text
-	} //end of .leaflet-bar a
+		} //end of .leaflet-control-button-group a.text
+	} //end of .leaflet-control-button-group a
 
 	//Center text-buttons
 	&.center-text a {
@@ -176,7 +176,7 @@ Adjustments to give leaflet a bootstrap-like look
 		    border-right: medium none;
 			}
 		} 
-	} //end of .leaflet-bar.horizontal
+	} //end of .leaflet-control-button-group.horizontal
 
 	&.separate {
 		a {
@@ -197,8 +197,8 @@ Adjustments to give leaflet a bootstrap-like look
 			&:last-child {	margin-bottom: 0px;	}
 		}
 	
-	} //end of .leaflet-bar.separate
+	} //end of .leaflet-control-button-group.separate
 
 
 
-} //end of .leaflet-bar
+} //end of .leaflet-control-button-group

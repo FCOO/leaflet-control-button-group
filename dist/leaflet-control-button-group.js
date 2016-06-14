@@ -37,7 +37,7 @@
 
     //Default options
 		options: {
-			VERSION					: "0.8.4",
+			VERSION					: "0.8.5",
       position				: 'topleft',
 			horizontal			: false,
 			small						: false,
@@ -65,7 +65,7 @@
 		//addButtons
 		addButtons: function(){
 			this._container = L.DomUtil.create('div',
-				'leaflet-bar '+
+				'leaflet-bar leaflet-control-button-group '+
 				(this.options.separateButtons ? 'separate ' : '') +
 				(this.options.centerText			? 'center-text ' : '') +
 				(this.options.horizontal			? 'horizontal ' : '') +
