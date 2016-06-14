@@ -28,7 +28,7 @@ Dim and font-size etc. for the tree different modes. .leaflet-touch.small == nor
 
 .leaflet-bar a.text i,
 .leaflet-touch .small.leaflet-bar a.text i {
-  padding-right: 5px;
+  padding-right: 2px;
   line-height: 26px;
   font-size: 16px; }
 
@@ -46,7 +46,7 @@ Dim and font-size etc. for the tree different modes. .leaflet-touch.small == nor
   padding-right: 4px; }
 
 .small.leaflet-bar a.text i {
-  padding-right: 4px;
+  padding-right: 1px;
   line-height: 20px;
   font-size: 13.7142857143px; }
 
@@ -59,7 +59,7 @@ Dim and font-size etc. for the tree different modes. .leaflet-touch.small == nor
   padding-right: 8px; }
 
 .leaflet-touch .leaflet-bar a.text i {
-  padding-right: 8px;
+  padding-right: 3px;
   line-height: 30px;
   font-size: 19.2px; }
 

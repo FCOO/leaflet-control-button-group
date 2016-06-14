@@ -46,7 +46,7 @@ $leaflet-small-dim-factor : 20/26;
 						padding-left	: $leaflet-padding;							
 						padding-right	: $leaflet-padding;	}
 
-	a.text i {	padding-right	: $leaflet-padding;
+	a.text i {	padding-right	: 2px;
 							line-height		: $height-width; 
 							font-size			: $icon-font-size;	}
 }
@@ -59,7 +59,7 @@ $leaflet-small-dim-factor : 20/26;
 	a.text	{ font-size			: $leaflet-small-font-factor*$text-font-size;
 						padding-left	: $leaflet-small-padding;							
 						padding-right	: $leaflet-small-padding;											}
-	a.text i {	padding-right	: $leaflet-small-padding;
+	a.text i {	padding-right	: 1px;
 							line-height		: $leaflet-small-dim-factor*$height-width; 
 							font-size			: $leaflet-small-font-factor*$icon-font-size;	}
 }
@@ -69,7 +69,7 @@ $leaflet-small-dim-factor : 20/26;
 	a.text	{ font-size			: $leaflet-touch-font-factor*$text-font-size;
 						padding-left	: $leaflet-touch-padding;							
 						padding-right	: $leaflet-touch-padding;											}
-	a.text i {	padding-right	: $leaflet-touch-padding;
+	a.text i {	padding-right	: 3px;
 							line-height		: $leaflet-touch-dim-factor*$height-width; 
 							font-size			: $leaflet-touch-font-factor*$icon-font-size;	}
 }
