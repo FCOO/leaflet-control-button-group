@@ -1,6 +1,6 @@
 {
   "name": "leaflet-control-button-group",
-  "version": "0.8.5",
+  "version": "0.8.6",
   "homepage": "https://github.com/FCOO/leaflet-control-button-group",
   "author": "NielsHolt nho@fcoo.dk",
   "description": "package.json is only use for building the package. see bower.json for more info",

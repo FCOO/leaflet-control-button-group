@@ -37,7 +37,7 @@
 
     //Default options
 		options: {
-			VERSION					: "0.8.5",
+			VERSION					: "0.8.6",
       position				: 'topleft',
 			horizontal			: false,
 			small						: false,
@@ -101,7 +101,7 @@
 			options.onClick = $.proxy( options.onClick, options.context );
 			var $i,
 					$link = $('<a>')
-									.addClass( (options.disabled ? 'leaflet-disabled ' : '') + options.className )
+									.addClass( 'leaflet-control-button ' + (options.disabled ? 'leaflet-disabled ' : '') + options.className )
 									.attr( options.attr )
 									.data('button', options);
 
