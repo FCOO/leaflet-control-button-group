@@ -37,7 +37,7 @@
 
     //Default options
 		options: {
-			VERSION					: "0.8.6",
+			VERSION					: "0.9.0",
       position				: 'topleft',
 			horizontal			: false,
 			small						: false,
@@ -97,11 +97,19 @@
 			//Set options.selectable if a selected-icon or selected is in options
 			options.selectable = options.selectable || !!options.selectedIcon || !!options.selected;
 
+			//Only separate individual buttons it they are not sepearated globaly
+			if (this.options.separateButtons)
+			  options.separatorBefore = false;
+
 			//Create the onClick-function
 			options.onClick = $.proxy( options.onClick, options.context );
 			var $i,
 					$link = $('<a>')
-									.addClass( 'leaflet-control-button ' + (options.disabled ? 'leaflet-disabled ' : '') + options.className )
+									.addClass( 'leaflet-control-button ' +
+															(options.disabled ? 'leaflet-disabled ' : '') +
+															(options.separatorBefore ? 'first-child ' : '') +
+															options.className
+									)
 									.attr( options.attr )
 									.data('button', options);
 
@@ -134,10 +142,19 @@
 			$link.on( 'click', $.proxy( this._onClick, this ) );
 
 
-			//Add <hr> before button (only vertical)
-			if (options.separatorBefore )
-			  $('<hr>').appendTo( $(this._container) );
+			//separatorBefore
+			if (options.separatorBefore && this.buttons.length)
+				$(this.buttons[this.buttons.length-1]).addClass('last-child');
+/*
+			if (options.separatorBefore ){
+				if (this.options.horizontal){
 
+				}
+				else
+					//Add <hr> before button
+					$('<hr>').appendTo( $(this._container) );
+			}
+*/
 			$(this._container).append( $link );
 
 			if (options.selected)

@@ -30,53 +30,82 @@
 		var map = L.map('map').setView([56.2, 11.5], 6);
 		L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 	
-		var myButtons = [
-				{icon:'map-marker ', hoverColor: 'green', text:'Set marker', onClick:myOnClick},
-				{icon:'calculator', onClick:myOnClick, disabled:true},
-				{icon:'ban', hoverColor:'red', onClick:myOnClick},
-				{id:'folder', icon:'folder-o', selectedIcon: 'folder-open-o', onClick:myOnClick},
-			],
-			myButtonGroup = new L.Control.ButtonGroup({
-				horizontal:true,
-				buttons: myButtons
-			}),
-			myButtonGroup2 = new L.Control.ButtonGroup({
-				horizontal:true,
-				separateButtons: true,
-				small: true,
-				equalWidth: true,
-				buttons: myButtons
-			}),
+			var myButtons = [
+						{icon:'map-marker',	hoverColor: 'green',	text:'Set marker',													onClick:myOnClick},
+						{icon:'calculator',																						disabled:true,					onClick:myOnClick},
+						{icon:'map-o',														text:'The map',															onClick:myOnClick},
+						{icon:'ban',					hoverColor: 'red',											separatorBefore: true,	onClick:myOnClick},
+						{icon:'folder-o',			selectedIcon: 'folder-open-o',																	onClick:myOnClick},
+					],
+					bgList = [];
+
+			bgList.push( 
+				new L.Control.ButtonGroup({
+					horizontal:true,
+					buttons: myButtons
+				})
+			);
+
+			bgList.push( 
+				new L.Control.ButtonGroup({
+					horizontal:true,
+					separateButtons: true,
+					small: true,
+					equalWidth: true,
+					buttons: myButtons
+				})
+			);
+
+			oneButton = [myButtons[0]],
+			bgList.push( 
+					new L.Control.ButtonGroup({
+					horizontal:true,
+					buttons: oneButton
+				})
+			);
+
 			myButtons2 = [
-				{icon:'map-marker '	, text:'Set marker'	, onClick:myOnClick},
-				{icon:'calculator'	, text:'Calculator'	, onClick:myOnClick, disabled:true},
-				{icon:'ban'					, text:'Cancel'			, onClick:myOnClick},
-				{icon:'folder-o'		, text:'Folder'			,	selectedIcon: 'folder-open-o', onClick:myOnClick},
+				{icon:'map-marker '	, text:'Set marker'	,																		onClick:myOnClick},
+				{icon:'calculator'	, text:'Calculator'	, disabled:true,										onClick:myOnClick},
+				{icon:'map-o',														text:'The map',															onClick:myOnClick},
+				{icon:'ban'					, text:'Cancel'			,	separatorBefore: true,						onClick:myOnClick},
+				{icon:'folder-o'		, text:'Folder'			,	selectedIcon: 'folder-open-o',		onClick:myOnClick},
 			],
-			myButtonGroup3 = new L.Control.ButtonGroup({
-				position: 'topright', 
-				horizontal:false,
-				buttons: myButtons2
-			}),
-			myButtonGroup4 = new L.Control.ButtonGroup({
-				position: 'bottomright', 
-				horizontal:false,
-				separateButtons: true,
-				small: true,
-				equalWidth: true,
-				buttons: myButtons2
-			});
+			bgList.push( 
+				new L.Control.ButtonGroup({
+					position: 'topright', 
+					horizontal:false,
+					buttons: myButtons2
+				})
+			);
+
+
+			bgList.push( 
+				new L.Control.ButtonGroup({
+					position: 'bottomright', 
+					horizontal:false,
+					separateButtons: true,
+					small: true,
+					equalWidth: true,
+					buttons: myButtons2
+				})
+			);
+
+
+			bgList.push( 
+				new L.Control.ButtonGroup({
+					position: 'topright', 
+					separateButtons: true,
+					buttons: oneButton
+				})
+			);
 
 
 
 
-		myButtonGroup.addTo(map);
-		myButtonGroup2.addTo(map);
-		myButtonGroup3.addTo(map);
-		myButtonGroup4.addTo(map);
+		for (var i=0; i<bgList.length; i++ )
+			bgList[i].addTo(map);
 
-
-		myButtonGroup.selectButton('folder');
 	</script>
 </body>
 </html>

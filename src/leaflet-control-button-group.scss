@@ -22,6 +22,8 @@
 Dim and font-size etc. for the tree different modes. .leaflet-touch.small == normal
 **********************/
 
+
+$border-radius	: 4px;
 $height-width		: 26px;
 $icon-font-size	: 16px;
 $text-font-size	: 14px;
@@ -37,6 +39,20 @@ $leaflet-touch-dim-factor : 30/26;
 $leaflet-small-font-factor: 12/14;
 $leaflet-small-dim-factor : 20/26;
 
+//TEST
+.leaflet-bar a:first-child {
+	border-top-left-radius: $border-radius;
+	border-top-right-radius: $border-radius;
+	}
+.leaflet-bar a:last-child {
+	border-bottom-left-radius: $border-radius;
+	border-bottom-right-radius: $border-radius;
+}
+//TEST SLUT
+
+/**********************
+Dimentions and padding for different sizees
+**********************/
 .leaflet-control-button-group,
 .leaflet-touch .small.leaflet-control-button-group {
 	a.leaflet-control-button			{ height				: $height-width; 
@@ -159,41 +175,60 @@ Adjustments to give leaflet a bootstrap-like look
 	&.horizontal { 
 		text-align: center;
 		a.leaflet-control-button {
-			display: inline-block;
+			display				: inline-block;
 			vertical-align: middle;
 			border-bottom	: none;
 			border-right	: 1px solid #ccc;	
-
-			&:first-child {
-		    border-radius							: 0px;
-			  border-top-left-radius		: 4px;
-				border-bottom-left-radius	: 4px;
+	    border-radius	: 0px;
+			&:first-child, &.first-child { 
+			  border-top-left-radius		: $border-radius;
+				border-bottom-left-radius	: $border-radius;
 			}
-			&:last-child {
-			  border-radius							: 0px;
-				border-top-right-radius		: 4px;
-		    border-bottom-right-radius: 4px;
+			&:last-child, &.last-child { 
+				border-top-right-radius		: $border-radius;
+		    border-bottom-right-radius: $border-radius;
 		    border-right: medium none;
 			}
+			&.last-child { 
+				margin-right: $border-radius;
+			} 
 		} 
 	} //end of .leaflet-control-button-group.horizontal
 
+	//Vertical
+	&:not(.horizontal) a.leaflet-control-button {
+			&:first-child, &.first-child { 
+			  border-top-left-radius	: $border-radius;
+				border-top-right-radius	: $border-radius;
+			}
+			&:last-child, &.last-child { 
+				border-bottom-left-radius	: $border-radius;
+		    border-bottom-right-radius: $border-radius;
+		    border-right: medium none;
+			}
+			&.last-child { 
+				margin-bottom: $border-radius;
+			} 
+
+	}
+
+	
 	&.separate {
 		a.leaflet-control-button {
 			border				: 1px solid #ccc !important;
-		  border-radius	: 4px !important;
+		  border-radius	: $border-radius !important;
 			&:hover	{ border-color: #adadad; }
 		}
 		
 		//Separate AND horizontal
 		&.horizontal a.leaflet-control-button {
-			margin-right: 4px;
+			margin-right: $border-radius;
 			&:last-child {	margin-right: 0px;	}
 		}
 
 		//Separate AND vertival
 		&:not(.horizontal) a.leaflet-control-button {
-			margin-bottom: 4px;
+			margin-bottom: $border-radius;
 			&:last-child {	margin-bottom: 0px;	}
 		}
 	

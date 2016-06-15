@@ -42,7 +42,7 @@ disabled | `boolean` | false | If `true` the button is disabled |
 selectable | `boolean` | false | If `true` the button is selectable |
 selected | `boolean` | false | If `true` the button is selected AND selectable |
 selectedIcon | `string` | '' | The fontawesome icon-name to be used when the button is selected  |
-separatorBefore | `boolean` | false | Only if `options.horizontal = false`: Adds a horizontal separator before the button |
+separatorBefore | `boolean` | false | Adds a separator before the button |
 hoverColor | `string` | null | Color for the icon, when the mouse is over the button and when the button is selected |
 title | `string` | '' | The `title`-attribute of the button |
 | className | `string` | '' | Extra class-name(s) for the button |
