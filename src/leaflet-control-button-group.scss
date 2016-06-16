@@ -39,7 +39,7 @@ $leaflet-touch-dim-factor : 30/26;
 $leaflet-small-font-factor: 12/14;
 $leaflet-small-dim-factor : 20/26;
 
-//TEST
+/*TEST
 .leaflet-bar a:first-child {
 	border-top-left-radius: $border-radius;
 	border-top-right-radius: $border-radius;
@@ -48,7 +48,7 @@ $leaflet-small-dim-factor : 20/26;
 	border-bottom-left-radius: $border-radius;
 	border-bottom-right-radius: $border-radius;
 }
-//TEST SLUT
+TEST SLUT*/
 
 /**********************
 Dimentions and padding for different sizees
@@ -180,11 +180,13 @@ Adjustments to give leaflet a bootstrap-like look
 			border-bottom	: none;
 			border-right	: 1px solid #ccc;	
 	    border-radius	: 0px;
-			&:first-child, &.first-child { 
+//			&:first-child, &.first-child { 
+			&:first-of-type, &.first-child { 
 			  border-top-left-radius		: $border-radius;
 				border-bottom-left-radius	: $border-radius;
 			}
-			&:last-child, &.last-child { 
+//			&:last-child, &.last-child { 
+			&:last-of-type, &.last-child { 
 				border-top-right-radius		: $border-radius;
 		    border-bottom-right-radius: $border-radius;
 		    border-right: medium none;
@@ -197,11 +199,13 @@ Adjustments to give leaflet a bootstrap-like look
 
 	//Vertical
 	&:not(.horizontal) a.leaflet-control-button {
-			&:first-child, &.first-child { 
+//			&:first-child, &.first-child { 
+			&:first-of-type, &.first-child { 
 			  border-top-left-radius	: $border-radius;
 				border-top-right-radius	: $border-radius;
 			}
-			&:last-child, &.last-child { 
+//			&:last-child, &.last-child { 
+			&:last-of-type, &.last-child { 
 				border-bottom-left-radius	: $border-radius;
 		    border-bottom-right-radius: $border-radius;
 		    border-right: medium none;
@@ -223,13 +227,15 @@ Adjustments to give leaflet a bootstrap-like look
 		//Separate AND horizontal
 		&.horizontal a.leaflet-control-button {
 			margin-right: $border-radius;
-			&:last-child {	margin-right: 0px;	}
+//			&:last-child {	margin-right: 0px;	}
+			&:last-of-type {	margin-right: 0px;	}
 		}
 
 		//Separate AND vertival
 		&:not(.horizontal) a.leaflet-control-button {
 			margin-bottom: $border-radius;
-			&:last-child {	margin-bottom: 0px;	}
+//			&:last-child {	margin-bottom: 0px;	}
+			&:last-of-type {	margin-bottom: 0px;	}
 		}
 	
 	} //end of .leaflet-control-button-group.separate

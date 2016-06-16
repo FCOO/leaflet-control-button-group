@@ -37,7 +37,7 @@
 
     //Default options
 		options: {
-			VERSION					: "0.9.0",
+			VERSION					: "0.10.0",
       position				: 'topleft',
 			horizontal			: false,
 			small						: false,

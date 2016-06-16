@@ -11,14 +11,16 @@
 /**********************
 Dim and font-size etc. for the tree different modes. .leaflet-touch.small == normal
 **********************/
+/*TEST
 .leaflet-bar a:first-child {
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px; }
-
+	border-top-left-radius: $border-radius;
+	border-top-right-radius: $border-radius;
+	}
 .leaflet-bar a:last-child {
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px; }
-
+	border-bottom-left-radius: $border-radius;
+	border-bottom-right-radius: $border-radius;
+}
+TEST SLUT*/
 /**********************
 Dimentions and padding for different sizees
 **********************/
@@ -131,19 +133,19 @@ Adjustments to give leaflet a bootstrap-like look
       border-bottom: none;
       border-right: 1px solid #ccc;
       border-radius: 0px; }
-      .leaflet-control-button-group.horizontal a.leaflet-control-button:first-child, .leaflet-control-button-group.horizontal a.leaflet-control-button.first-child {
+      .leaflet-control-button-group.horizontal a.leaflet-control-button:first-of-type, .leaflet-control-button-group.horizontal a.leaflet-control-button.first-child {
         border-top-left-radius: 4px;
         border-bottom-left-radius: 4px; }
-      .leaflet-control-button-group.horizontal a.leaflet-control-button:last-child, .leaflet-control-button-group.horizontal a.leaflet-control-button.last-child {
+      .leaflet-control-button-group.horizontal a.leaflet-control-button:last-of-type, .leaflet-control-button-group.horizontal a.leaflet-control-button.last-child {
         border-top-right-radius: 4px;
         border-bottom-right-radius: 4px;
         border-right: medium none; }
       .leaflet-control-button-group.horizontal a.leaflet-control-button.last-child {
         margin-right: 4px; }
-  .leaflet-control-button-group:not(.horizontal) a.leaflet-control-button:first-child, .leaflet-control-button-group:not(.horizontal) a.leaflet-control-button.first-child {
+  .leaflet-control-button-group:not(.horizontal) a.leaflet-control-button:first-of-type, .leaflet-control-button-group:not(.horizontal) a.leaflet-control-button.first-child {
     border-top-left-radius: 4px;
     border-top-right-radius: 4px; }
-  .leaflet-control-button-group:not(.horizontal) a.leaflet-control-button:last-child, .leaflet-control-button-group:not(.horizontal) a.leaflet-control-button.last-child {
+  .leaflet-control-button-group:not(.horizontal) a.leaflet-control-button:last-of-type, .leaflet-control-button-group:not(.horizontal) a.leaflet-control-button.last-child {
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
     border-right: medium none; }
@@ -156,9 +158,9 @@ Adjustments to give leaflet a bootstrap-like look
       border-color: #adadad; }
   .leaflet-control-button-group.separate.horizontal a.leaflet-control-button {
     margin-right: 4px; }
-    .leaflet-control-button-group.separate.horizontal a.leaflet-control-button:last-child {
+    .leaflet-control-button-group.separate.horizontal a.leaflet-control-button:last-of-type {
       margin-right: 0px; }
   .leaflet-control-button-group.separate:not(.horizontal) a.leaflet-control-button {
     margin-bottom: 4px; }
-    .leaflet-control-button-group.separate:not(.horizontal) a.leaflet-control-button:last-child {
+    .leaflet-control-button-group.separate:not(.horizontal) a.leaflet-control-button:last-of-type {
       margin-bottom: 0px; }
