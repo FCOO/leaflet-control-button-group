@@ -99,7 +99,7 @@
 				var $container = null;
 				if (buttonOptions.containerBefore || buttonOptions.containerAfter){
 					$container = $('<div>')
-												.addClass('leaflet-control-container-between')
+												.addClass('leaflet-control-container-between');
 					
 					this.container = this.container || $container[0];
 					this.containers.push( $container[0] );

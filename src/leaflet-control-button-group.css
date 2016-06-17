@@ -17,73 +17,70 @@ Dimentions and padding for different sizees
 .leaflet-control-button-group a.leaflet-control-button,
 .leaflet-touch .small.leaflet-control-button-group a.leaflet-control-button {
   height: 26px;
-  line-height: 26px;
-}
+  line-height: 26px; }
+
 .leaflet-control-button-group a.leaflet-control-button.fa,
 .leaflet-touch .small.leaflet-control-button-group a.leaflet-control-button.fa {
-  font-size: 16px;
-}
+  font-size: 16px; }
+
 .leaflet-control-button-group a.leaflet-control-button.text,
 .leaflet-touch .small.leaflet-control-button-group a.leaflet-control-button.text {
   font-size: 14px;
   padding-left: 5px;
-  padding-right: 5px;
-}
+  padding-right: 5px; }
+
 .leaflet-control-button-group a.leaflet-control-button.text i,
 .leaflet-touch .small.leaflet-control-button-group a.leaflet-control-button.text i {
   padding-right: 2px;
-  font-size: 16px;
-}
+  font-size: 16px; }
+
 .leaflet-control-button-group .leaflet-control-container-between,
 .leaflet-touch .small.leaflet-control-button-group .leaflet-control-container-between {
   width: 26px;
   height: 26px;
   line-height: 26px;
-  font-size: 14px;
-}
+  font-size: 14px; }
 
 .small.leaflet-control-button-group a.leaflet-control-button {
   height: 20px;
-  line-height: 20px;
-}
+  line-height: 20px; }
+
 .small.leaflet-control-button-group a.leaflet-control-button.fa {
   width: 20px;
-  font-size: 13.71429px;
-}
+  font-size: 13.7142857143px; }
+
 .small.leaflet-control-button-group a.leaflet-control-button.text {
   font-size: 12px;
   padding-left: 4px;
-  padding-right: 4px;
-}
+  padding-right: 4px; }
+
 .small.leaflet-control-button-group a.leaflet-control-button.text i {
   padding-right: 1px;
-  font-size: 13.71429px;
-}
+  font-size: 13.7142857143px; }
+
 .small.leaflet-control-button-group .leaflet-control-container-between {
   width: 20px;
   height: 20px;
   line-height: 20px;
-  font-size: 12px;
-}
+  font-size: 12px; }
 
 .leaflet-touch .leaflet-control-button-group a.leaflet-control-button.fa {
-  font-size: 19.2px;
-}
+  font-size: 19.2px; }
+
 .leaflet-touch .leaflet-control-button-group a.leaflet-control-button.text {
   font-size: 16.8px;
   padding-left: 8px;
-  padding-right: 8px;
-}
+  padding-right: 8px; }
+
 .leaflet-touch .leaflet-control-button-group a.leaflet-control-button.text i {
   padding-right: 3px;
-  font-size: 19.2px;
-}
+  font-size: 19.2px; }
+
 .leaflet-touch .leaflet-control-button-group .leaflet-control-container-between {
-  width: 30.0px;
-  height: 30.0px;
-  line-height: 30.0px;
-  font-size: 19.2px;
-}
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 19.2px; }
 
 /**********************
 Adjustments to give leaflet a bootstrap-like look
@@ -94,139 +91,103 @@ Adjustments to give leaflet a bootstrap-like look
   -ms-user-select: none;
   user-select: none;
   /*******************
-  Anchor 
-  ********************/
-}
-.leaflet-control-button-group hr {
-  margin: 0;
-  border-bottom-width: 2px;
-  border-top-width: 2px;
-}
-.leaflet-control-button-group a.leaflet-control-button {
-  color: #444;
-  cursor: pointer;
-  vertical-align: top;
-}
-.leaflet-control-button-group a.leaflet-control-button:not(:hover):not(.selected) {
-  color: #444 !important;
-}
-.leaflet-control-button-group a.leaflet-control-button:not(:hover):not(.selected) i {
-  color: #444 !important;
-}
-.leaflet-control-button-group a.leaflet-control-button.leaflet-disabled, .leaflet-control-button-group a.leaflet-control-button[disabled] {
-  cursor: default;
-  opacity: 0.4;
-  pointer-events: none;
-}
-.leaflet-control-button-group a.leaflet-control-button:hover {
-  color: black;
-  background-color: #e6e6e6;
-}
-.leaflet-control-button-group a.leaflet-control-button:active {
-  color: black;
-  background-color: #bdbdbd;
-}
-.leaflet-control-button-group a.leaflet-control-button.selected {
-  color: black;
-  background-color: #d1d1d1;
-}
-.leaflet-control-button-group a.leaflet-control-button.selected:hover {
-  background-color: #b8b8b8;
-}
-.leaflet-control-button-group a.leaflet-control-button.selected:active {
-  background-color: #9e9e9e;
-}
-.leaflet-control-button-group a.leaflet-control-button.text {
-  font-family: proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif;
-  text-align: left;
-  width: auto;
-}
-.leaflet-control-button-group a.leaflet-control-button.text i {
-  margin: 0px;
-  text-align: center;
-  vertical-align: 0;
-}
-.leaflet-control-button-group .leaflet-control-container-between {
-  background-color: #fff;
-  vertical-align: middle;
-  padding: 0;
-  padding-left: 5px;
-  padding-right: 5px;
-  font-family: proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif;
-}
-.leaflet-control-button-group.center-text a.leaflet-control-button {
-  text-align: center;
-}
-.leaflet-control-button-group.horizontal {
-  text-align: center;
-}
-.leaflet-control-button-group.horizontal .leaflet-control-container-between {
-  width: auto !important;
-}
-.leaflet-control-button-group.horizontal a.leaflet-control-button,
-.leaflet-control-button-group.horizontal .leaflet-control-container-between {
-  display: inline-block;
-  border-bottom: none;
-  border-right: 1px solid #ccc;
-  border-radius: 0px;
-}
-.leaflet-control-button-group.horizontal a.leaflet-control-button:first-of-type, .leaflet-control-button-group.horizontal a.leaflet-control-button.first-child {
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-}
-.leaflet-control-button-group.horizontal a.leaflet-control-button:last-of-type, .leaflet-control-button-group.horizontal a.leaflet-control-button.last-child {
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-  border-right: medium none;
-}
-.leaflet-control-button-group.horizontal a.leaflet-control-button.last-child {
-  margin-right: 4px;
-}
-.leaflet-control-button-group:not(.horizontal) .leaflet-control-container-between {
-  border-bottom: 1px solid #ccc;
-  width: auto !important;
-}
-.leaflet-control-button-group:not(.horizontal) a.leaflet-control-button:first-of-type, .leaflet-control-button-group:not(.horizontal) a.leaflet-control-button.first-child {
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-}
-.leaflet-control-button-group:not(.horizontal) a.leaflet-control-button:last-of-type, .leaflet-control-button-group:not(.horizontal) a.leaflet-control-button.last-child {
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
-  border-right: medium none;
-}
-.leaflet-control-button-group:not(.horizontal) a.leaflet-control-button.last-child {
-  margin-bottom: 4px;
-}
-.leaflet-control-button-group.separate .leaflet-control-container-between,
-.leaflet-control-button-group.separate a.leaflet-control-button {
-  border: 1px solid #ccc !important;
-  border-radius: 4px !important;
-}
-.leaflet-control-button-group.separate .leaflet-control-container-between:hover,
-.leaflet-control-button-group.separate a.leaflet-control-button:hover {
-  border-color: #adadad;
-}
-.leaflet-control-button-group.separate a.leaflet-control-button:hover {
-  border-color: #adadad;
-}
-.leaflet-control-button-group.separate.horizontal a.leaflet-control-button {
-  margin-right: 4px;
-}
-.leaflet-control-button-group.separate.horizontal a.leaflet-control-button:last-of-type {
-  margin-right: 0px;
-}
-.leaflet-control-button-group.separate.horizontal .leaflet-control-container-between {
-  margin-right: 4px;
-}
-.leaflet-control-button-group.separate:not(.horizontal) a.leaflet-control-button {
-  margin-bottom: 4px;
-}
-.leaflet-control-button-group.separate:not(.horizontal) a.leaflet-control-button:last-of-type {
-  margin-bottom: 0px;
-}
-.leaflet-control-button-group.separate:not(.horizontal) .leaflet-control-container-between {
-  margin-bottom: 4px;
-}
-
-/*# sourceMappingURL=leaflet-control-button-group.css.map */
+	Anchor 
+	********************/ }
+  .leaflet-control-button-group hr {
+    margin: 0;
+    border-bottom-width: 2px;
+    border-top-width: 2px; }
+  .leaflet-control-button-group a.leaflet-control-button {
+    color: #444;
+    cursor: pointer;
+    vertical-align: top; }
+    .leaflet-control-button-group a.leaflet-control-button:not(:hover):not(.selected) {
+      color: #444 !important; }
+      .leaflet-control-button-group a.leaflet-control-button:not(:hover):not(.selected) i {
+        color: #444 !important; }
+    .leaflet-control-button-group a.leaflet-control-button.leaflet-disabled, .leaflet-control-button-group a.leaflet-control-button[disabled] {
+      cursor: default;
+      opacity: 0.4;
+      pointer-events: none; }
+    .leaflet-control-button-group a.leaflet-control-button:hover {
+      color: black;
+      background-color: #e6e6e6; }
+    .leaflet-control-button-group a.leaflet-control-button:active {
+      color: black;
+      background-color: #bdbdbd; }
+    .leaflet-control-button-group a.leaflet-control-button.selected {
+      color: black;
+      background-color: #d1d1d1; }
+      .leaflet-control-button-group a.leaflet-control-button.selected:hover {
+        background-color: #b8b8b8; }
+      .leaflet-control-button-group a.leaflet-control-button.selected:active {
+        background-color: #9e9e9e; }
+    .leaflet-control-button-group a.leaflet-control-button.text {
+      font-family: proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif;
+      text-align: left;
+      width: auto; }
+      .leaflet-control-button-group a.leaflet-control-button.text i {
+        margin: 0px;
+        text-align: center;
+        vertical-align: 0; }
+  .leaflet-control-button-group .leaflet-control-container-between {
+    background-color: #fff;
+    vertical-align: middle;
+    padding: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-family: proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif; }
+  .leaflet-control-button-group.center-text a.leaflet-control-button {
+    text-align: center; }
+  .leaflet-control-button-group.horizontal {
+    text-align: center; }
+    .leaflet-control-button-group.horizontal .leaflet-control-container-between {
+      width: auto !important; }
+    .leaflet-control-button-group.horizontal a.leaflet-control-button,
+    .leaflet-control-button-group.horizontal .leaflet-control-container-between {
+      display: inline-block;
+      border-bottom: none;
+      border-right: 1px solid #ccc;
+      border-radius: 0px; }
+    .leaflet-control-button-group.horizontal a.leaflet-control-button:first-of-type, .leaflet-control-button-group.horizontal a.leaflet-control-button.first-child {
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px; }
+    .leaflet-control-button-group.horizontal a.leaflet-control-button:last-of-type, .leaflet-control-button-group.horizontal a.leaflet-control-button.last-child {
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+      border-right: medium none; }
+    .leaflet-control-button-group.horizontal a.leaflet-control-button.last-child {
+      margin-right: 4px; }
+  .leaflet-control-button-group:not(.horizontal) .leaflet-control-container-between {
+    border-bottom: 1px solid #ccc;
+    width: auto !important; }
+  .leaflet-control-button-group:not(.horizontal) a.leaflet-control-button:first-of-type, .leaflet-control-button-group:not(.horizontal) a.leaflet-control-button.first-child {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px; }
+  .leaflet-control-button-group:not(.horizontal) a.leaflet-control-button:last-of-type, .leaflet-control-button-group:not(.horizontal) a.leaflet-control-button.last-child {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-right: medium none; }
+  .leaflet-control-button-group:not(.horizontal) a.leaflet-control-button.last-child {
+    margin-bottom: 4px; }
+  .leaflet-control-button-group.separate .leaflet-control-container-between,
+  .leaflet-control-button-group.separate a.leaflet-control-button {
+    border: 1px solid #ccc !important;
+    border-radius: 4px !important; }
+    .leaflet-control-button-group.separate .leaflet-control-container-between:hover,
+    .leaflet-control-button-group.separate a.leaflet-control-button:hover {
+      border-color: #adadad; }
+  .leaflet-control-button-group.separate a.leaflet-control-button:hover {
+    border-color: #adadad; }
+  .leaflet-control-button-group.separate.horizontal a.leaflet-control-button {
+    margin-right: 4px; }
+    .leaflet-control-button-group.separate.horizontal a.leaflet-control-button:last-of-type {
+      margin-right: 0px; }
+  .leaflet-control-button-group.separate.horizontal .leaflet-control-container-between {
+    margin-right: 4px; }
+  .leaflet-control-button-group.separate:not(.horizontal) a.leaflet-control-button {
+    margin-bottom: 4px; }
+    .leaflet-control-button-group.separate:not(.horizontal) a.leaflet-control-button:last-of-type {
+      margin-bottom: 0px; }
+  .leaflet-control-button-group.separate:not(.horizontal) .leaflet-control-container-between {
+    margin-bottom: 4px; }
