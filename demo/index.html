@@ -15,7 +15,7 @@
 </head>
 
 <body>
-	<div id="map" style="width: 600px; height: 400px"></div>
+	<div id="map" style="width: 800px; height: 600px"></div>
 
 
 	
@@ -27,14 +27,15 @@
 			console.log( onClickObj );
 		}
 
-		var map = L.map('map').setView([56.2, 11.5], 6);
+		var bg, map = L.map('map').setView([56.2, 11.5], 6);
 		L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 	
 			var myButtons = [
 						{icon:'map-marker',	hoverColor: 'green',	text:'Set marker',													onClick:myOnClick},
-						{icon:'calculator',																						disabled:true,					onClick:myOnClick},
+						{icon:'calculator',												containerBefore:true,												onClick:myOnClick},
 						{icon:'map-o',														text:'The map',															onClick:myOnClick},
 						{icon:'ban',					hoverColor: 'red',											separatorBefore: true,	onClick:myOnClick},
+						{icon:'ban',															disabled:true,															onClick:myOnClick},
 						{icon:'folder-o',			selectedIcon: 'folder-open-o',																	onClick:myOnClick},
 					],
 					bgList = [];
@@ -56,24 +57,18 @@
 				})
 			);
 
-			oneButton = [myButtons[0]],
-			bgList.push( 
-					new L.Control.ButtonGroup({
-					horizontal:true,
-					buttons: oneButton
-				})
-			);
-
 			myButtons2 = [
-				{icon:'map-marker '	, text:'Set marker'	,																		onClick:myOnClick},
-				{icon:'calculator'	, text:'Calculator'	, disabled:true,										onClick:myOnClick},
-				{icon:'map-o',														text:'The map',															onClick:myOnClick},
+				{icon:'map-marker '	, text:'Set marker'	,	containerAfter:true,							onClick:myOnClick},
+				{icon:'calculator'	, text:'Calculator'	,																		onClick:myOnClick},
+				{icon:'map-o',														text:'The map',										onClick:myOnClick},
 				{icon:'ban'					, text:'Cancel'			,	separatorBefore: true,						onClick:myOnClick},
+				{icon:'ban'					, text:'Cancel'			,	disabled:true,										onClick:myOnClick},
 				{icon:'folder-o'		, text:'Folder'			,	selectedIcon: 'folder-open-o',		onClick:myOnClick},
 			],
+
 			bgList.push( 
 				new L.Control.ButtonGroup({
-					position: 'topright', 
+					position: 'bottomright', 
 					horizontal:false,
 					buttons: myButtons2
 				})
@@ -82,7 +77,7 @@
 
 			bgList.push( 
 				new L.Control.ButtonGroup({
-					position: 'bottomright', 
+					position: 'topright', 
 					horizontal:false,
 					separateButtons: true,
 					small: true,
@@ -91,6 +86,9 @@
 				})
 			);
 
+
+
+			oneButton = [myButtons[0]],
 
 			bgList.push( 
 				new L.Control.ButtonGroup({
@@ -103,8 +101,7 @@
 			oneButton[0].text = '';
 			bgList.push( 
 				new L.Control.ButtonGroup({
-					position: 'topright', 
-					separateButtons: true,
+					position: 'bottomright', 
 					buttons: oneButton
 				})
 			);
@@ -112,8 +109,10 @@
 
 
 
-		for (var i=0; i<bgList.length; i++ )
+		for (var i=0; i<bgList.length; i++ ){
 			bgList[i].addTo(map);
+			$(bgList[i].container).text('Hello');
+		}
 
 	</script>
 </body>

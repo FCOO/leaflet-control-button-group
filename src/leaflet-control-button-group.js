@@ -20,6 +20,8 @@
 		selected				: false,
 		selectedIcon		: '',
 		separatorBefore	: false,
+		containerBefore : false,
+		containerAfter	: false,
 		hoverColor			: null,
 		title						: '',
 		className				: '',
@@ -33,8 +35,6 @@
 
 	//Extend L.Control
 	L.Control.ButtonGroup = L.Control.extend({
-
-
     //Default options
 		options: {
 			VERSION					: "{VERSION}",
@@ -52,18 +52,24 @@
 
 		//initialize
 		initialize: function(options) {
+			this.buttons		= [];		//List of buttons as html-element - both bottons[index] and button8id]
+			this.container	= null; //DOM-element. The first container added using the button options containerBefore or containerAfter
+			this.containers	= [];		//array of DOM-element. All the containers added using the button options containerBefore or containerAfter
+
 			L.setOptions(this, options);
-			this.buttons = []; //List of buttons as html-element - both bottons[index] and button8id]
+		
+			this._create();
+			return this._container;
 		},
 
 		onAdd: function (map) {
       this._map = map;
-			this.addButtons();
 			return this._container;
     },
 
-		//addButtons
-		addButtons: function(){
+		//_create
+		_create: function(){
+			var buttonOptions, $button, $i, button;
 			this._container = L.DomUtil.create('div',
 				'leaflet-bar leaflet-control-button-group '+
 				(this.options.separateButtons ? 'separate ' : '') +
@@ -73,104 +79,103 @@
 				this.options.className
 			);
       L.DomEvent.disableClickPropagation( this._container );
-			for (var i=0; i<this.options.buttons.length; i++ )
-				this._addButton( this.options.buttons[i] );
-		},
 
+			for (var i=0; i<this.options.buttons.length; i++ ){
+				buttonOptions = this.options.buttons[i];
 
-		//_addButton
-		_addButton: function( options ){
-			var $button = this._createButton( options ),
-					button = $button[0];
-			this.buttons.push( button );
-			if (options.id)
-				this.buttons[ options.id ] = button;
+				buttonOptions = L.extend({}, defaultButtonOptions, buttonOptions);
 
+				//Set buttonOptions.selectable if a selected-icon or selected is in buttonOptions
+				buttonOptions.selectable = buttonOptions.selectable || !!buttonOptions.selectedIcon || !!buttonOptions.selected;
+
+				//Only separate individual buttons it they are not sepearated globaly
+				if (this.options.separateButtons)
+				  buttonOptions.separatorBefore = false;
+
+				//Create the onClick-function
+				buttonOptions.onClick = $.proxy( buttonOptions.onClick, buttonOptions.context );
+
+				//Create the container
+				var $container = null;
+				if (buttonOptions.containerBefore || buttonOptions.containerAfter){
+					$container = $('<div>')
+												.addClass('leaflet-control-container-between')
+					
+					this.container = this.container || $container[0];
+					this.containers.push( $container[0] );
+				}
+
+				$button = $('<a>')
+										.addClass( 'leaflet-control-button ' +
+																(buttonOptions.disabled ? 'leaflet-disabled ' : '') +
+																(buttonOptions.separatorBefore ? 'first-child ' : '') +
+																buttonOptions.className
+										)
+										.attr( buttonOptions.attr )
+										.data('button', buttonOptions);
+
+				if (buttonOptions.text){
+					$button.addClass('text');
+
+					if (buttonOptions.icon){
+						$i = $('<i>')
+							.addClass( 'fa fa-fw fa-'+buttonOptions.icon )
+							.appendTo( $button );
+
+						if (buttonOptions.hoverColor)
+							$i.css('color', buttonOptions.hoverColor);
+					}
+					$button.append( buttonOptions.text.replace(/ /g, "&nbsp;") );
+				}
+				else {
+					$button.addClass( 'fa fa-fw fa-'+buttonOptions.icon );
+					if (buttonOptions.hoverColor)
+						$button.css('color', buttonOptions.hoverColor);
+				}
+
+				if (buttonOptions.href)
+					$button.attr('href', buttonOptions.href);
+
+				if (buttonOptions.title)
+					$button.attr('title', buttonOptions.title);
+
+				$button.on( 'click', $.proxy( this._onClick, this ) );
+
+				//separatorBefore
+				if (buttonOptions.separatorBefore && this.buttons.length)
+					$(this.buttons[this.buttons.length-1]).addClass('last-child');
+
+				if (buttonOptions.containerBefore)
+					$(this._container).append( $container );
+	
+				$(this._container).append( $button );
+	
+				if (buttonOptions.containerAfter)
+					$(this._container).append( $container );
+	
+				if (buttonOptions.selected)
+					this._selectButton( $button[0], true );
+
+				//Add the button to the lists
+				button = $button[0];
+				this.buttons.push( button );
+				if (buttonOptions.id)
+					this.buttons[ buttonOptions.id ] = button;
+			}
 			if (this.options.equalWidth)
 			  this._checkWidth();
 		},
-
-		//_createButton
-		_createButton: function (options ) {
-			options = L.extend({}, defaultButtonOptions, options);
-
-			//Set options.selectable if a selected-icon or selected is in options
-			options.selectable = options.selectable || !!options.selectedIcon || !!options.selected;
-
-			//Only separate individual buttons it they are not sepearated globaly
-			if (this.options.separateButtons)
-			  options.separatorBefore = false;
-
-			//Create the onClick-function
-			options.onClick = $.proxy( options.onClick, options.context );
-			var $i,
-					$link = $('<a>')
-									.addClass( 'leaflet-control-button ' +
-															(options.disabled ? 'leaflet-disabled ' : '') +
-															(options.separatorBefore ? 'first-child ' : '') +
-															options.className
-									)
-									.attr( options.attr )
-									.data('button', options);
-
-			if (options.text){
-				$link.addClass('text');
-
-				if (options.icon){
-					$i = $('<i>')
-						.addClass( 'fa fa-fw fa-'+options.icon )
-						.appendTo( $link );
-
-					if (options.hoverColor)
-						$i.css('color', options.hoverColor);
-				}
-				$link.append( options.text.replace(/ /g, "&nbsp;") );
-			}
-			else {
-				$link.addClass( 'fa fa-fw fa-'+options.icon );
-				if (options.hoverColor)
-					$link.css('color', options.hoverColor);
-			}
-
-
-			if (options.href)
-				$link.attr('href', options.href);
-
-			if (options.title)
-				$link.attr('title', options.title);
-
-			$link.on( 'click', $.proxy( this._onClick, this ) );
-
-
-			//separatorBefore
-			if (options.separatorBefore && this.buttons.length)
-				$(this.buttons[this.buttons.length-1]).addClass('last-child');
-/*
-			if (options.separatorBefore ){
-				if (this.options.horizontal){
-
-				}
-				else
-					//Add <hr> before button
-					$('<hr>').appendTo( $(this._container) );
-			}
-*/
-			$(this._container).append( $link );
-
-			if (options.selected)
-				this._selectButton( $link[0], true );
-
-			return $link;
-    },
+		
 
 		//_checkWidth - check if the width of all buttons is known and set all buttons to max-width (if options.equalWidth = true )
 		_checkWidth: function(){
 			if (this.intervalId)
 				return;
 			this.intervalId = window.setInterval( $.proxy( this._checkAllWidth, this ), 100 );
-
 		},
-		_checkAllWidth: function(){
+
+		//_checkAllWidth
+		_checkAllWidth: function(){ 
 			var i, width, allWidthSet = true, maxWidth = 0;
 			for (i=0; i<this.buttons.length; i++ ){
 				width = $(this.buttons[i]).width();

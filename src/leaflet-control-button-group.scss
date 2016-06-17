@@ -39,22 +39,12 @@ $leaflet-touch-dim-factor : 30/26;
 $leaflet-small-font-factor: 12/14;
 $leaflet-small-dim-factor : 20/26;
 
-/*TEST
-.leaflet-bar a:first-child {
-	border-top-left-radius: $border-radius;
-	border-top-right-radius: $border-radius;
-	}
-.leaflet-bar a:last-child {
-	border-bottom-left-radius: $border-radius;
-	border-bottom-right-radius: $border-radius;
-}
-TEST SLUT*/
-
 /**********************
 Dimentions and padding for different sizees
 **********************/
 .leaflet-control-button-group,
 .leaflet-touch .small.leaflet-control-button-group {
+
 	a.leaflet-control-button			{ height				: $height-width; 
 																	line-height		: $height-width;		}
 	a.leaflet-control-button.fa		{ font-size			: $icon-font-size;	}
@@ -63,8 +53,13 @@ Dimentions and padding for different sizees
 																	padding-right	: $leaflet-padding;	}
 
 	a.leaflet-control-button.text i {	padding-right	: 2px;
-																		line-height		: $height-width; 
 																		font-size			: $icon-font-size;	}
+
+	//leaflet-control-container-between = <div> between two buttons
+	.leaflet-control-container-between	{	width				: $height-width; 
+																				height			: $height-width; 
+																				line-height	: $height-width; 
+																				font-size		: $text-font-size;	}
 }
 
 .small.leaflet-control-button-group {
@@ -75,9 +70,14 @@ Dimentions and padding for different sizees
 	a.leaflet-control-button.text	{ font-size			: $leaflet-small-font-factor*$text-font-size;
 																	padding-left	: $leaflet-small-padding;							
 																	padding-right	: $leaflet-small-padding;											}
+
 	a.leaflet-control-button.text i {	padding-right	: 1px;
-																		line-height		: $leaflet-small-dim-factor*$height-width; 
 																		font-size			: $leaflet-small-font-factor*$icon-font-size;	}
+
+	.leaflet-control-container-between	{	width				: $height-width * $leaflet-small-dim-factor; 
+																				height			: $height-width * $leaflet-small-dim-factor; 
+																				line-height	: $height-width * $leaflet-small-dim-factor; 
+																				font-size		: $leaflet-small-font-factor*$text-font-size;	}
 }
 
 .leaflet-touch .leaflet-control-button-group {
@@ -85,9 +85,14 @@ Dimentions and padding for different sizees
 	a.leaflet-control-button.text	{ font-size			: $leaflet-touch-font-factor*$text-font-size;
 																	padding-left	: $leaflet-touch-padding;							
 																	padding-right	: $leaflet-touch-padding;											}
+
 	a.leaflet-control-button.text i {	padding-right	: 3px;
-																		line-height		: $leaflet-touch-dim-factor*$height-width; 
 																		font-size			: $leaflet-touch-font-factor*$icon-font-size;	}
+	
+	.leaflet-control-container-between	{	width				: $height-width * $leaflet-touch-dim-factor; 
+																				height			: $height-width * $leaflet-touch-dim-factor; 
+																				line-height	: $height-width * $leaflet-touch-dim-factor; 
+																				font-size		: $leaflet-touch-font-factor*$icon-font-size;	}
 }
 
 
@@ -128,6 +133,8 @@ Adjustments to give leaflet a bootstrap-like look
 		color	: $normal-color; 
 		cursor: pointer;
 		
+vertical-align: top; //middle; TEST
+
 		//Allow color to be the hover-color for <a> or <i> <a style="color:..."> and <a><i style="color:..."></i> 
 		&:not(:hover):not(.selected) {
 			color: $normal-color !important;
@@ -152,7 +159,6 @@ Adjustments to give leaflet a bootstrap-like look
 			&:active	{ background-color: $selected-active-bg-color; }
 		}
 
-
 		//Button with both icon and text: <a class="text"><i class="fa fa-lg fa-ICON"></i>The text</a>
 		&.text {
 			font-family	: proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif; //Same font-family as bootstrap
@@ -166,26 +172,48 @@ Adjustments to give leaflet a bootstrap-like look
 		} //end of .leaflet-control-button-group a.leaflet-control-button.text
 	} //end of .leaflet-control-button-group a.leaflet-control-button
 
+	
+	.leaflet-control-container-between {
+		background-color: #fff;
+		vertical-align: middle;
+		padding: 0;
+		padding-left	: $leaflet-padding;							
+		padding-right	: $leaflet-padding;	
+		font-family	: proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif; //Same font-family as bootstrap
+	}
+	
+	
+	
+	
 	//Center text-buttons
 	&.center-text a.leaflet-control-button {
 		text-align: center;
 	}
 
+
+
+
 	//Horizontal 
 	&.horizontal { 
 		text-align: center;
-		a.leaflet-control-button {
+
+		.leaflet-control-container-between {
+			width		:	auto !important;
+		}
+
+		a.leaflet-control-button,
+		.leaflet-control-container-between {
 			display				: inline-block;
-			vertical-align: middle;
 			border-bottom	: none;
 			border-right	: 1px solid #ccc;	
 	    border-radius	: 0px;
-//			&:first-child, &.first-child { 
+		}
+
+		a.leaflet-control-button {
 			&:first-of-type, &.first-child { 
 			  border-top-left-radius		: $border-radius;
 				border-bottom-left-radius	: $border-radius;
 			}
-//			&:last-child, &.last-child { 
 			&:last-of-type, &.last-child { 
 				border-top-right-radius		: $border-radius;
 		    border-bottom-right-radius: $border-radius;
@@ -198,48 +226,62 @@ Adjustments to give leaflet a bootstrap-like look
 	} //end of .leaflet-control-button-group.horizontal
 
 	//Vertical
-	&:not(.horizontal) a.leaflet-control-button {
-//			&:first-child, &.first-child { 
+	&:not(.horizontal) {
+		.leaflet-control-container-between {
+			border-bottom	: 1px solid #ccc;	
+			width					:	auto !important;
+		}
+
+		a.leaflet-control-button {
 			&:first-of-type, &.first-child { 
-			  border-top-left-radius	: $border-radius;
+				border-top-left-radius	: $border-radius;
 				border-top-right-radius	: $border-radius;
 			}
-//			&:last-child, &.last-child { 
 			&:last-of-type, &.last-child { 
 				border-bottom-left-radius	: $border-radius;
-		    border-bottom-right-radius: $border-radius;
-		    border-right: medium none;
+				border-bottom-right-radius: $border-radius;
+				border-right: medium none;
 			}
 			&.last-child { 
 				margin-bottom: $border-radius;
 			} 
-
+		}
+	
 	}
 
 	
 	&.separate {
+		.leaflet-control-container-between,
 		a.leaflet-control-button {
 			border				: 1px solid #ccc !important;
 		  border-radius	: $border-radius !important;
 			&:hover	{ border-color: #adadad; }
 		}
+		a.leaflet-control-button:hover	{ border-color: #adadad; }
+
+		
 		
 		//Separate AND horizontal
-		&.horizontal a.leaflet-control-button {
-			margin-right: $border-radius;
-//			&:last-child {	margin-right: 0px;	}
-			&:last-of-type {	margin-right: 0px;	}
+		&.horizontal {
+			a.leaflet-control-button {
+				margin-right: $border-radius;
+				&:last-of-type {	margin-right: 0px;	}
+			}
+			.leaflet-control-container-between {
+				margin-right: $border-radius;
+			}
 		}
 
 		//Separate AND vertival
-		&:not(.horizontal) a.leaflet-control-button {
-			margin-bottom: $border-radius;
-//			&:last-child {	margin-bottom: 0px;	}
-			&:last-of-type {	margin-bottom: 0px;	}
+		&:not(.horizontal) {
+			a.leaflet-control-button {
+				margin-bottom: $border-radius;
+				&:last-of-type {	margin-bottom: 0px;	}
+			}
+			.leaflet-control-container-between {
+				margin-bottom: $border-radius;
+			}
 		}
 	
 	} //end of .leaflet-control-button-group.separate
-
-
-
 } //end of .leaflet-control-button-group
