@@ -36,7 +36,7 @@
 						{icon:'map-o',														text:'The map',															onClick:myOnClick},
 						{icon:'ban',					hoverColor: 'red',											separatorBefore: true,	onClick:myOnClick},
 						{icon:'ban',															disabled:true,															onClick:myOnClick},
-						{icon:'folder-o',			selectedIcon: 'folder-open-o',																	onClick:myOnClick},
+						{icon:'folder-o',			selectedIcon: 'folder-open-o',	modernizrTest:'folder',					onClick:myOnClick},
 					],
 					bgList = [];
 
@@ -112,8 +112,27 @@
 		for (var i=0; i<bgList.length; i++ ){
 			bgList[i].addTo(map);
 			$(bgList[i].container).text('Hello');
-		}
+		};
 
+		var myButtons3 = [
+				{icon:'fast-backward',							onClick:myOnClick},
+				{icon:'backward',										onClick:myOnClick},
+				{icon:'play', selectedIcon:'pause', onClick:myOnClick},
+				{icon:'forward',										onClick:myOnClick},
+				{icon:'fast-forward',								onClick:myOnClick},
+			],
+		radioBg = new L.Control.ButtonGroup({
+					position: 'topleft', 
+					horizontal: true,
+					radioGroup: true,
+					allowNoSelected: true, 
+					buttons: myButtons3
+				});
+		radioBg.addTo(map);	
+
+
+	
+	
 	</script>
 </body>
 </html>

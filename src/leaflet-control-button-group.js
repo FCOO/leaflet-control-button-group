@@ -19,6 +19,11 @@
 		selectable			: false,
 		selected				: false,
 		selectedIcon		: '',
+		modernizrTest		: '',
+		radioGroup			: false,
+		radioGroupId		: '',
+		allowNoSelected	: false,
+
 		separatorBefore	: false,
 		containerBefore : false,
 		containerAfter	: false,
@@ -44,6 +49,9 @@
 			separateButtons	: false,
 			centerText			: false,
 			equalWidth			: false,
+			radioGroup			: false,
+			radioGroupId		: '',
+			allowNoSelected	: false,
 			buttons					: [],
 			className				: '',
 			onClickObj			: {}
@@ -57,7 +65,7 @@
 			this.containers	= [];		//array of DOM-element. All the containers added using the button options containerBefore or containerAfter
 
 			L.setOptions(this, options);
-		
+
 			this._create();
 			return this._container;
 		},
@@ -85,8 +93,19 @@
 
 				buttonOptions = L.extend({}, defaultButtonOptions, buttonOptions);
 
-				//Set buttonOptions.selectable if a selected-icon or selected is in buttonOptions
-				buttonOptions.selectable = buttonOptions.selectable || !!buttonOptions.selectedIcon || !!buttonOptions.selected;
+				//If all buttons are radio buttons
+				if (this.options.radioGroup){
+				  buttonOptions.radioGroup = true;
+				}
+
+				//Use default radio-options if none are given
+				if (buttonOptions.radioGroup){
+				  buttonOptions.radioGroupId		= buttonOptions.radioGroupId		!= undefined ? buttonOptions.radioGroupId			: this.options.radioGroupId;
+				  buttonOptions.allowNoSelected = buttonOptions.allowNoSelected != undefined ? buttonOptions.allowNoSelected	: this.options.allowNoSelected;
+				}
+
+				//Set buttonOptions.selectable if a selected-icon, selected, modernizrTest, or radioGroup is in buttonOptions
+				buttonOptions.selectable = buttonOptions.selectable || !!buttonOptions.selectedIcon || !!buttonOptions.selected || !!buttonOptions.modernizrTest || !!buttonOptions.radioGroup;
 
 				//Only separate individual buttons it they are not sepearated globaly
 				if (this.options.separateButtons)
@@ -100,7 +119,7 @@
 				if (buttonOptions.containerBefore || buttonOptions.containerAfter){
 					$container = $('<div>')
 												.addClass('leaflet-control-container-between');
-					
+
 					this.container = this.container || $container[0];
 					this.containers.push( $container[0] );
 				}
@@ -147,14 +166,18 @@
 
 				if (buttonOptions.containerBefore)
 					$(this._container).append( $container );
-	
+
 				$(this._container).append( $button );
-	
+
 				if (buttonOptions.containerAfter)
 					$(this._container).append( $container );
-	
+
 				if (buttonOptions.selected)
-					this._selectButton( $button[0], true );
+					this._selectButton( $button[0], true )
+				else
+					if (buttonOptions.modernizrTest)
+						$('html').addClass('no-'+buttonOptions.modernizrTest);
+
 
 				//Add the button to the lists
 				button = $button[0];
@@ -165,7 +188,7 @@
 			if (this.options.equalWidth)
 			  this._checkWidth();
 		},
-		
+
 
 		//_checkWidth - check if the width of all buttons is known and set all buttons to max-width (if options.equalWidth = true )
 		_checkWidth: function(){
@@ -175,7 +198,7 @@
 		},
 
 		//_checkAllWidth
-		_checkAllWidth: function(){ 
+		_checkAllWidth: function(){
 			var i, width, allWidthSet = true, maxWidth = 0;
 			for (i=0; i<this.buttons.length; i++ ){
 				width = $(this.buttons[i]).width();
@@ -242,6 +265,10 @@
 						var iconElem = options.text ? button.firstChild : button;
 						this._buttonToggleClass( iconElem, 'fa-' + options.icon,				 !selected );
 						this._buttonToggleClass( iconElem, 'fa-' + options.selectedIcon,  selected );
+					}
+					if (options.modernizrTest){
+					  $('html').toggleClass(				options.modernizrTest,  selected );
+					  $('html').toggleClass( 'no-'+	options.modernizrTest, !selected );
 					}
 				options.onClick( this._getOnClickObj(options.id, button, selected) );
 			}
