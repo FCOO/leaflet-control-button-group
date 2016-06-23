@@ -11,7 +11,9 @@
 ;(function ($, L, window, document, undefined) {
 	"use strict";
 
-	var defaultButtonOptions = {
+
+	var defaultRadioGroupNr = 0,
+			defaultButtonOptions = {
 		id							: '',
 		icon						: 'help',
 		text						: '',
@@ -19,6 +21,11 @@
 		selectable			: false,
 		selected				: false,
 		selectedIcon		: '',
+		modernizrTest		: '',
+		radioGroup			: false,
+		radioGroupId		: '',
+		allowNoSelected	: false,
+
 		separatorBefore	: false,
 		containerBefore : false,
 		containerAfter	: false,
@@ -37,13 +44,15 @@
 	L.Control.ButtonGroup = L.Control.extend({
     //Default options
 		options: {
-			VERSION					: "1.0.0",
+			VERSION					: "1.1.0",
       position				: 'topleft',
 			horizontal			: false,
 			small						: false,
 			separateButtons	: false,
 			centerText			: false,
 			equalWidth			: false,
+			radioGroup			: false,
+			radioGroupId		: '',
 			buttons					: [],
 			className				: '',
 			onClickObj			: {}
@@ -57,11 +66,15 @@
 			this.containers	= [];		//array of DOM-element. All the containers added using the button options containerBefore or containerAfter
 
 			L.setOptions(this, options);
-		
+
+			if (this.options.radioGroup)
+			  this.options.radioGroupId = this.options.radioGroupId || 'defaultRadioGroup' + defaultRadioGroupNr++;
+
 			this._create();
 			return this._container;
 		},
 
+		//onAdd
 		onAdd: function (map) {
       this._map = map;
 			return this._container;
@@ -85,8 +98,19 @@
 
 				buttonOptions = L.extend({}, defaultButtonOptions, buttonOptions);
 
-				//Set buttonOptions.selectable if a selected-icon or selected is in buttonOptions
-				buttonOptions.selectable = buttonOptions.selectable || !!buttonOptions.selectedIcon || !!buttonOptions.selected;
+				//If all buttons are radio buttons
+				if (this.options.radioGroup){
+				  buttonOptions.radioGroup = true;
+				}
+
+				//Use default radio-options if none are given
+				if (buttonOptions.radioGroup){
+				  buttonOptions.radioGroupId		= buttonOptions.radioGroupId !== '' ? buttonOptions.radioGroupId : this.options.radioGroupId;
+				  buttonOptions.allowNoSelected = !!buttonOptions.allowNoSelected	|| this.options.allowNoSelected;
+				}
+
+				//Set buttonOptions.selectable if a selected-icon, selected, modernizrTest, or radioGroup is in buttonOptions
+				buttonOptions.selectable = buttonOptions.selectable || !!buttonOptions.selectedIcon || !!buttonOptions.selected || !!buttonOptions.modernizrTest || !!buttonOptions.radioGroup;
 
 				//Only separate individual buttons it they are not sepearated globaly
 				if (this.options.separateButtons)
@@ -100,7 +124,7 @@
 				if (buttonOptions.containerBefore || buttonOptions.containerAfter){
 					$container = $('<div>')
 												.addClass('leaflet-control-container-between');
-					
+
 					this.container = this.container || $container[0];
 					this.containers.push( $container[0] );
 				}
@@ -109,10 +133,19 @@
 										.addClass( 'leaflet-control-button ' +
 																(buttonOptions.disabled ? 'leaflet-disabled ' : '') +
 																(buttonOptions.separatorBefore ? 'first-child ' : '') +
+																(buttonOptions.radioGroup ? 'radio-button ' : '') +
 																buttonOptions.className
 										)
 										.attr( buttonOptions.attr )
 										.data('button', buttonOptions);
+
+				
+				if (buttonOptions.radioGroup) {
+					if (!buttonOptions.allowNoSelected)
+					  $(this._container).addClass('radio-group');
+					if (buttonOptions.radioGroupId)
+						$button.data('radioGroupId', buttonOptions.radioGroupId);
+				}
 
 				if (buttonOptions.text){
 					$button.addClass('text');
@@ -147,14 +180,18 @@
 
 				if (buttonOptions.containerBefore)
 					$(this._container).append( $container );
-	
+
 				$(this._container).append( $button );
-	
+
 				if (buttonOptions.containerAfter)
 					$(this._container).append( $container );
-	
+
 				if (buttonOptions.selected)
 					this._selectButton( $button[0], true );
+				else
+					if (buttonOptions.modernizrTest)
+						$('html').addClass('no-'+buttonOptions.modernizrTest);
+
 
 				//Add the button to the lists
 				button = $button[0];
@@ -165,7 +202,7 @@
 			if (this.options.equalWidth)
 			  this._checkWidth();
 		},
-		
+
 
 		//_checkWidth - check if the width of all buttons is known and set all buttons to max-width (if options.equalWidth = true )
 		_checkWidth: function(){
@@ -175,7 +212,7 @@
 		},
 
 		//_checkAllWidth
-		_checkAllWidth: function(){ 
+		_checkAllWidth: function(){
 			var i, width, allWidthSet = true, maxWidth = 0;
 			for (i=0; i<this.buttons.length; i++ ){
 				width = $(this.buttons[i]).width();
@@ -196,8 +233,8 @@
 		},
 
 		//_getOnClickObj
-		_getOnClickObj: function( id, button, selected ){
-			return L.extend({}, this.options.onClickObj, {id: id, map: this._map, button: button, selected: selected});
+		_getOnClickObj: function( id, button, selected, radioGroupId ){
+			return L.extend({}, this.options.onClickObj, {id: id, map: this._map, button: button, selected: selected, radioGroupId: radioGroupId});
 		},
 
 		//_onClick
@@ -208,7 +245,7 @@
 			if (options.selectable)
 				this._selectButton( button, !$button.hasClass('selected') );
 			else {
-				options.onClick( this._getOnClickObj(options.id, button, null) );
+				options.onClick( this._getOnClickObj(options.id, button, null, null) );
 			}
 		},
 
@@ -232,9 +269,9 @@
 
 
 		//_selectButton
-		_selectButton: function( button, selected ){
+		_selectButton: function( button, selected, dontCallOnClick ){
 			var $button = $(button),
-					options;
+					options, i;
 			if (button){
 				this._buttonToggleClass( button, 'selected', selected );
 				options = $button.data('button');
@@ -243,7 +280,20 @@
 						this._buttonToggleClass( iconElem, 'fa-' + options.icon,				 !selected );
 						this._buttonToggleClass( iconElem, 'fa-' + options.selectedIcon,  selected );
 					}
-				options.onClick( this._getOnClickObj(options.id, button, selected) );
+					if (options.modernizrTest){
+					  $('html').toggleClass(				options.modernizrTest,  selected );
+					  $('html').toggleClass( 'no-'+	options.modernizrTest, !selected );
+					}
+				if (!dontCallOnClick){
+					options.onClick( this._getOnClickObj(options.id, button, selected, options.radioGroupId) );
+
+					if (options.radioGroupId){
+						for (i=0; i<this.buttons.length; i++ )
+							if ( (this.buttons[i] != button) && ( $(this.buttons).data('radioGroupId') == options.radioGroupId ) ){
+								this._selectButton( this.buttons[i], false, true );
+							}
+					}
+				}
 			}
 		},
 

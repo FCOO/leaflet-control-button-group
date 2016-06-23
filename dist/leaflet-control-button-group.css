@@ -130,13 +130,6 @@ Adjustments to give leaflet a bootstrap-like look
         margin: 0px;
         text-align: center;
         vertical-align: 0; }
-  .leaflet-control-button-group .leaflet-control-container-between {
-    background-color: #fff;
-    vertical-align: middle;
-    padding: 0;
-    padding-left: 5px;
-    padding-right: 5px;
-    font-family: proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif; }
   .leaflet-control-button-group.center-text a.leaflet-control-button {
     text-align: center; }
   .leaflet-control-button-group.horizontal {
@@ -191,3 +184,13 @@ Adjustments to give leaflet a bootstrap-like look
       margin-bottom: 0px; }
   .leaflet-control-button-group.separate:not(.horizontal) .leaflet-control-container-between {
     margin-bottom: 4px; }
+  .leaflet-control-button-group.radio-group a.radio-button.selected {
+    cursor: default;
+    pointer-events: none; }
+  .leaflet-control-button-group .leaflet-control-container-between {
+    background-color: #fff;
+    vertical-align: middle;
+    padding: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-family: proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif; }

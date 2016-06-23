@@ -44,7 +44,7 @@ http://FCOO.github.io/leaflet-control-button-group/demo/
 | hoverColor | `string` | null | Color for the icon, when the mouse is over the button and when the button is selected |
 | radioGroup | `boolean` | false | If true the button is part of a radio group |
 |	radioGroupId | `string` | '' | The id of the radio group |
-|	allowNoSelected | `boolean` | false | If true the radio button can be unselected |
+|	allowNoSelected | `boolean` | false | If true the radio button can be unselected. **NOTE:** `false` will NOT overwrite `allowNoSelected:true` in options for `L.Control.ButtonGroup`  |
 | text | `string` | '' | The text next to the icon |
 | title | `string` | '' | The `title`-attribute of the button |
 | disabled | `boolean` | false | If `true` the button is disabled |

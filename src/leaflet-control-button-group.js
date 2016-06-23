@@ -11,7 +11,9 @@
 ;(function ($, L, window, document, undefined) {
 	"use strict";
 
-	var defaultButtonOptions = {
+
+	var defaultRadioGroupNr = 0,
+			defaultButtonOptions = {
 		id							: '',
 		icon						: 'help',
 		text						: '',
@@ -51,7 +53,6 @@
 			equalWidth			: false,
 			radioGroup			: false,
 			radioGroupId		: '',
-			allowNoSelected	: false,
 			buttons					: [],
 			className				: '',
 			onClickObj			: {}
@@ -66,10 +67,14 @@
 
 			L.setOptions(this, options);
 
+			if (this.options.radioGroup)
+			  this.options.radioGroupId = this.options.radioGroupId || 'defaultRadioGroup' + defaultRadioGroupNr++;
+
 			this._create();
 			return this._container;
 		},
 
+		//onAdd
 		onAdd: function (map) {
       this._map = map;
 			return this._container;
@@ -100,8 +105,8 @@
 
 				//Use default radio-options if none are given
 				if (buttonOptions.radioGroup){
-				  buttonOptions.radioGroupId		= buttonOptions.radioGroupId		!= undefined ? buttonOptions.radioGroupId			: this.options.radioGroupId;
-				  buttonOptions.allowNoSelected = buttonOptions.allowNoSelected != undefined ? buttonOptions.allowNoSelected	: this.options.allowNoSelected;
+				  buttonOptions.radioGroupId		= buttonOptions.radioGroupId !== '' ? buttonOptions.radioGroupId : this.options.radioGroupId;
+				  buttonOptions.allowNoSelected = !!buttonOptions.allowNoSelected	|| this.options.allowNoSelected;
 				}
 
 				//Set buttonOptions.selectable if a selected-icon, selected, modernizrTest, or radioGroup is in buttonOptions
@@ -128,10 +133,19 @@
 										.addClass( 'leaflet-control-button ' +
 																(buttonOptions.disabled ? 'leaflet-disabled ' : '') +
 																(buttonOptions.separatorBefore ? 'first-child ' : '') +
+																(buttonOptions.radioGroup ? 'radio-button ' : '') +
 																buttonOptions.className
 										)
 										.attr( buttonOptions.attr )
 										.data('button', buttonOptions);
+
+				
+				if (buttonOptions.radioGroup) {
+					if (!buttonOptions.allowNoSelected)
+					  $(this._container).addClass('radio-group');
+					if (buttonOptions.radioGroupId)
+						$button.data('radioGroupId', buttonOptions.radioGroupId);
+				}
 
 				if (buttonOptions.text){
 					$button.addClass('text');
@@ -173,7 +187,7 @@
 					$(this._container).append( $container );
 
 				if (buttonOptions.selected)
-					this._selectButton( $button[0], true )
+					this._selectButton( $button[0], true );
 				else
 					if (buttonOptions.modernizrTest)
 						$('html').addClass('no-'+buttonOptions.modernizrTest);
@@ -219,8 +233,8 @@
 		},
 
 		//_getOnClickObj
-		_getOnClickObj: function( id, button, selected ){
-			return L.extend({}, this.options.onClickObj, {id: id, map: this._map, button: button, selected: selected});
+		_getOnClickObj: function( id, button, selected, radioGroupId ){
+			return L.extend({}, this.options.onClickObj, {id: id, map: this._map, button: button, selected: selected, radioGroupId: radioGroupId});
 		},
 
 		//_onClick
@@ -231,7 +245,7 @@
 			if (options.selectable)
 				this._selectButton( button, !$button.hasClass('selected') );
 			else {
-				options.onClick( this._getOnClickObj(options.id, button, null) );
+				options.onClick( this._getOnClickObj(options.id, button, null, null) );
 			}
 		},
 
@@ -255,9 +269,9 @@
 
 
 		//_selectButton
-		_selectButton: function( button, selected ){
+		_selectButton: function( button, selected, dontCallOnClick ){
 			var $button = $(button),
-					options;
+					options, i;
 			if (button){
 				this._buttonToggleClass( button, 'selected', selected );
 				options = $button.data('button');
@@ -270,7 +284,16 @@
 					  $('html').toggleClass(				options.modernizrTest,  selected );
 					  $('html').toggleClass( 'no-'+	options.modernizrTest, !selected );
 					}
-				options.onClick( this._getOnClickObj(options.id, button, selected) );
+				if (!dontCallOnClick){
+					options.onClick( this._getOnClickObj(options.id, button, selected, options.radioGroupId) );
+
+					if (options.radioGroupId){
+						for (i=0; i<this.buttons.length; i++ )
+							if ( (this.buttons[i] != button) && ( $(this.buttons).data('radioGroupId') == options.radioGroupId ) ){
+								this._selectButton( this.buttons[i], false, true );
+							}
+					}
+				}
 			}
 		},
 
