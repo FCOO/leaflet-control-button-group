@@ -47,7 +47,7 @@ Dimentions and padding for different sizees
 
 .small.leaflet-control-button-group a.leaflet-control-button.fa {
   width: 20px;
-  font-size: 13.7142857143px; }
+  font-size: 13.75px; }
 
 .small.leaflet-control-button-group a.leaflet-control-button.text {
   font-size: 12px;
@@ -56,7 +56,7 @@ Dimentions and padding for different sizees
 
 .small.leaflet-control-button-group a.leaflet-control-button.text i {
   padding-right: 1px;
-  font-size: 13.7142857143px; }
+  font-size: 13.75px; }
 
 .small.leaflet-control-button-group .leaflet-control-container-between {
   width: 20px;
@@ -64,23 +64,27 @@ Dimentions and padding for different sizees
   line-height: 20px;
   font-size: 12px; }
 
+.leaflet-touch .leaflet-control-button-group a.leaflet-control-button {
+  height: 30px;
+  line-height: 30px; }
+
 .leaflet-touch .leaflet-control-button-group a.leaflet-control-button.fa {
-  font-size: 19.2px; }
+  font-size: 19px; }
 
 .leaflet-touch .leaflet-control-button-group a.leaflet-control-button.text {
-  font-size: 16.8px;
+  font-size: 19px;
   padding-left: 8px;
   padding-right: 8px; }
 
 .leaflet-touch .leaflet-control-button-group a.leaflet-control-button.text i {
   padding-right: 3px;
-  font-size: 19.2px; }
+  font-size: 19px; }
 
 .leaflet-touch .leaflet-control-button-group .leaflet-control-container-between {
   width: 30px;
   height: 30px;
   line-height: 30px;
-  font-size: 19.2px; }
+  font-size: 19px; }
 
 /**********************
 Adjustments to give leaflet a bootstrap-like look

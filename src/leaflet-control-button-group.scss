@@ -24,20 +24,28 @@ Dim and font-size etc. for the tree different modes. .leaflet-touch.small == nor
 
 
 $border-radius	: 4px;
-$height-width		: 26px;
-$icon-font-size	: 16px;
-$text-font-size	: 14px;
+
+
+$leaflet-small-height-width	: 20px;
+$leaflet-height-width				: 26px;
+$leaflet-touch-height-width	: 30px;
+
+
+$leaflet-small-icon-font-size	: 13.75px;
+$leaflet-icon-font-size				: 16px;
+$leaflet-touch-icon-font-size	: 19px;
+
+
+
+$leaflet-small-text-font-size	: 12px;
+$leaflet-text-font-size				: 14px;
+$leaflet-touch-text-font-size	: 17px;
+
 
 $leaflet-small-padding: 4px;
 $leaflet-padding			: 5px;
 $leaflet-touch-padding: 8px;
 
-
-$leaflet-touch-font-factor: 24/20;
-$leaflet-touch-dim-factor : 30/26;
-
-$leaflet-small-font-factor: 12/14;
-$leaflet-small-dim-factor : 20/26;
 
 /**********************
 Dimentions and padding for different sizees
@@ -45,54 +53,57 @@ Dimentions and padding for different sizees
 .leaflet-control-button-group,
 .leaflet-touch .small.leaflet-control-button-group {
 
-	a.leaflet-control-button			{ height				: $height-width; 
-																	line-height		: $height-width;		}
-	a.leaflet-control-button.fa		{ font-size			: $icon-font-size;	}
-	a.leaflet-control-button.text	{ font-size			: $text-font-size;
+	a.leaflet-control-button			{ height				: $leaflet-height-width; 
+																	line-height		: $leaflet-height-width;		}
+	a.leaflet-control-button.fa		{ font-size			: $leaflet-icon-font-size;	}
+	a.leaflet-control-button.text	{ font-size			: $leaflet-text-font-size;
 																	padding-left	: $leaflet-padding;							
 																	padding-right	: $leaflet-padding;	}
 
 	a.leaflet-control-button.text i {	padding-right	: 2px;
-																		font-size			: $icon-font-size;	}
+																		font-size			: $leaflet-icon-font-size;	}
 
 	//leaflet-control-container-between = <div> between two buttons
-	.leaflet-control-container-between	{	width				: $height-width; 
-																				height			: $height-width; 
-																				line-height	: $height-width; 
-																				font-size		: $text-font-size;	}
+	.leaflet-control-container-between	{	width				: $leaflet-height-width; 
+																				height			: $leaflet-height-width; 
+																				line-height	: $leaflet-height-width; 
+																				font-size		: $leaflet-text-font-size;	}
 }
 
 .small.leaflet-control-button-group {
-	a.leaflet-control-button			{ height				: $leaflet-small-dim-factor*$height-width; 
-																	line-height		: $leaflet-small-dim-factor*$height-width;		}
-	a.leaflet-control-button.fa		{ width					: $leaflet-small-dim-factor*$height-width;
-																	font-size			: $leaflet-small-font-factor*$icon-font-size;	}
-	a.leaflet-control-button.text	{ font-size			: $leaflet-small-font-factor*$text-font-size;
+	a.leaflet-control-button			{ height				: $leaflet-small-height-width; 
+																	line-height		: $leaflet-small-height-width;		}
+	a.leaflet-control-button.fa		{ width					: $leaflet-small-height-width;
+																	font-size			: $leaflet-small-icon-font-size;	}
+	a.leaflet-control-button.text	{ font-size			: $leaflet-small-text-font-size;
 																	padding-left	: $leaflet-small-padding;							
 																	padding-right	: $leaflet-small-padding;											}
 
 	a.leaflet-control-button.text i {	padding-right	: 1px;
-																		font-size			: $leaflet-small-font-factor*$icon-font-size;	}
+																		font-size			: $leaflet-small-icon-font-size;	}
 
-	.leaflet-control-container-between	{	width				: $height-width * $leaflet-small-dim-factor; 
-																				height			: $height-width * $leaflet-small-dim-factor; 
-																				line-height	: $height-width * $leaflet-small-dim-factor; 
-																				font-size		: $leaflet-small-font-factor*$text-font-size;	}
+	.leaflet-control-container-between	{	width				: $leaflet-small-height-width; 
+																				height			: $leaflet-small-height-width; 
+																				line-height	: $leaflet-small-height-width; 
+																				font-size		: $leaflet-small-text-font-size;	}
 }
 
 .leaflet-touch .leaflet-control-button-group {
-	a.leaflet-control-button.fa		{ font-size			: $leaflet-touch-font-factor*$icon-font-size;	}
-	a.leaflet-control-button.text	{ font-size			: $leaflet-touch-font-factor*$text-font-size;
+	a.leaflet-control-button			{ height				: $leaflet-touch-height-width; 
+																	line-height		: $leaflet-touch-height-width;		}
+
+	a.leaflet-control-button.fa		{ font-size			: $leaflet-touch-icon-font-size;	}
+	a.leaflet-control-button.text	{ font-size			: $leaflet-touch-icon-font-size;
 																	padding-left	: $leaflet-touch-padding;							
 																	padding-right	: $leaflet-touch-padding;											}
 
 	a.leaflet-control-button.text i {	padding-right	: 3px;
-																		font-size			: $leaflet-touch-font-factor*$icon-font-size;	}
+																		font-size			: $leaflet-touch-icon-font-size;	}
 	
-	.leaflet-control-container-between	{	width				: $height-width * $leaflet-touch-dim-factor; 
-																				height			: $height-width * $leaflet-touch-dim-factor; 
-																				line-height	: $height-width * $leaflet-touch-dim-factor; 
-																				font-size		: $leaflet-touch-font-factor*$icon-font-size;	}
+	.leaflet-control-container-between	{	width				: $leaflet-touch-height-width; 
+																				height			: $leaflet-touch-height-width; 
+																				line-height	: $leaflet-touch-height-width; 
+																				font-size		: $leaflet-touch-icon-font-size;	}
 }
 
 

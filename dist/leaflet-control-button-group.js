@@ -44,7 +44,7 @@
 	L.Control.ButtonGroup = L.Control.extend({
     //Default options
 		options: {
-			VERSION					: "1.1.0",
+			VERSION					: "1.1.1",
       position				: 'topleft',
 			horizontal			: false,
 			small						: false,
