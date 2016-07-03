@@ -48,6 +48,7 @@ http://FCOO.github.io/leaflet-control-button-group/demo/
 | text | `string` | '' | The text next to the icon |
 | title | `string` | '' | The `title`-attribute of the button |
 | disabled | `boolean` | false | If `true` the button is disabled |
+| hidden | `boolean` | false | If `true` the button is hidden |
 | selectable | `boolean` | false | If `true` the button is selectable |
 | selected | `boolean` | false | If `true` the button is selected AND selectable |
 | modernizrTest | `string` | '' | Name of modenizr test. if `modenirzTest:'TEST'` the html-element will get class-name `TEST` / `no-TEST` when the button is selected / unselected |
@@ -62,21 +63,27 @@ http://FCOO.github.io/leaflet-control-button-group/demo/
 
 ### onClickObj
 The object passed to the onClick-functions contains:
-`{id, map, button, selected}`
+`{id, map, button, buttonGroup, selected}`
 
 ### Properties and Methods
 
 A button can be identified either by its index in the `options.buttons` array or by the (optional) id in its `buttonOptions`
 
-		.enableButton( indexOrId )
-		.disableButton( indexOrId )
-		.selectButton( indexOrId )
-		.unselectButton( indexOrId )
+		.enableButton( indexOrIdOrButton )
+		.disableButton( indexOrIdOrButton )
+		.showButton( indexOrIdOrButton )
+		.hideButton( indexOrIdOrButton )
+		.selectButton( indexOrIdOrButton )
+		.unselectButton( indexOrIdOrButton )
 
 When adding containers between the buttons by setting the button options `containerBefore` and/or `containerAfter` the added containers can be accessed and modified using  
  
 		.container //DOM-element. The first container
 		.containers[] //array of DOM-element 
+
+## To do
+When a button is hidden the next and/or previous button is altered to have round borders it they now is the new button on the edge.
+This do not work correct if there is a 
 
 ## Copyright and License
 This plugin is licensed under the [MIT license](https://github.com/FCOO/leaflet-control-button-group/LICENSE).

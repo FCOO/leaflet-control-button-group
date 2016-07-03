@@ -97,10 +97,6 @@ Adjustments to give leaflet a bootstrap-like look
   /*******************
 	Anchor 
 	********************/ }
-  .leaflet-control-button-group hr {
-    margin: 0;
-    border-bottom-width: 2px;
-    border-top-width: 2px; }
   .leaflet-control-button-group a.leaflet-control-button {
     color: #444;
     cursor: pointer;
@@ -113,6 +109,8 @@ Adjustments to give leaflet a bootstrap-like look
       cursor: default;
       opacity: 0.4;
       pointer-events: none; }
+    .leaflet-control-button-group a.leaflet-control-button.leaflet-hidden {
+      display: none !important; }
     .leaflet-control-button-group a.leaflet-control-button:hover {
       color: black;
       background-color: #e6e6e6; }
@@ -146,27 +144,31 @@ Adjustments to give leaflet a bootstrap-like look
       border-bottom: none;
       border-right: 1px solid #ccc;
       border-radius: 0px; }
-    .leaflet-control-button-group.horizontal a.leaflet-control-button:first-of-type, .leaflet-control-button-group.horizontal a.leaflet-control-button.first-child {
+    .leaflet-control-button-group.horizontal a.leaflet-control-button:first-of-type, .leaflet-control-button-group.horizontal a.leaflet-control-button.first-child, .leaflet-control-button-group.horizontal a.leaflet-control-button.first-visible {
       border-top-left-radius: 4px;
       border-bottom-left-radius: 4px; }
-    .leaflet-control-button-group.horizontal a.leaflet-control-button:last-of-type, .leaflet-control-button-group.horizontal a.leaflet-control-button.last-child {
+    .leaflet-control-button-group.horizontal a.leaflet-control-button:last-of-type, .leaflet-control-button-group.horizontal a.leaflet-control-button.last-child, .leaflet-control-button-group.horizontal a.leaflet-control-button.last-visible {
       border-top-right-radius: 4px;
       border-bottom-right-radius: 4px;
       border-right: medium none; }
-    .leaflet-control-button-group.horizontal a.leaflet-control-button.last-child {
+    .leaflet-control-button-group.horizontal a.leaflet-control-button.last-child, .leaflet-control-button-group.horizontal a.leaflet-control-button.last-visible:not(.absolute-last-visible) {
       margin-right: 4px; }
+    .leaflet-control-button-group.horizontal a.leaflet-control-button.absolute-last-visible {
+      margin-right: 0px !important; }
   .leaflet-control-button-group:not(.horizontal) .leaflet-control-container-between {
     border-bottom: 1px solid #ccc;
     width: auto !important; }
-  .leaflet-control-button-group:not(.horizontal) a.leaflet-control-button:first-of-type, .leaflet-control-button-group:not(.horizontal) a.leaflet-control-button.first-child {
+  .leaflet-control-button-group:not(.horizontal) a.leaflet-control-button:first-of-type, .leaflet-control-button-group:not(.horizontal) a.leaflet-control-button.first-child, .leaflet-control-button-group:not(.horizontal) a.leaflet-control-button.first-visible {
     border-top-left-radius: 4px;
     border-top-right-radius: 4px; }
-  .leaflet-control-button-group:not(.horizontal) a.leaflet-control-button:last-of-type, .leaflet-control-button-group:not(.horizontal) a.leaflet-control-button.last-child {
+  .leaflet-control-button-group:not(.horizontal) a.leaflet-control-button:last-of-type, .leaflet-control-button-group:not(.horizontal) a.leaflet-control-button.last-child, .leaflet-control-button-group:not(.horizontal) a.leaflet-control-button.last-visible {
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
     border-right: medium none; }
-  .leaflet-control-button-group:not(.horizontal) a.leaflet-control-button.last-child {
+  .leaflet-control-button-group:not(.horizontal) a.leaflet-control-button.last-child, .leaflet-control-button-group:not(.horizontal) a.leaflet-control-button.last-visible:not(.absolute-last-visible) {
     margin-bottom: 4px; }
+  .leaflet-control-button-group:not(.horizontal) a.leaflet-control-button.absolute-last-visible {
+    margin-bottom: 0px !important; }
   .leaflet-control-button-group.separate .leaflet-control-container-between,
   .leaflet-control-button-group.separate a.leaflet-control-button {
     border: 1px solid #ccc !important;

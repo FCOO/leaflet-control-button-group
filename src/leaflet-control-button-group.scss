@@ -117,13 +117,6 @@ Adjustments to give leaflet a bootstrap-like look
       -ms-user-select: none;
           user-select: none;
 
-	//<hr> between <a> (vertical)
-	hr {
-	  margin							: 0;
-		border-bottom-width	:	2px;
-		border-top-width		:	2px;
-	}
-
 	
 	/*******************
 	Anchor 
@@ -144,7 +137,7 @@ Adjustments to give leaflet a bootstrap-like look
 		color	: $normal-color; 
 		cursor: pointer;
 		
-		vertical-align: top; //middle; TEST
+		vertical-align: top; 
 
 		//Allow color to be the hover-color for <a> or <i> <a style="color:..."> and <a><i style="color:..."></i> 
 		&:not(:hover):not(.selected) {
@@ -159,7 +152,12 @@ Adjustments to give leaflet a bootstrap-like look
 			opacity				: 0.4;
 			pointer-events: none;
 		}
-
+	
+		//Class to hide a button
+		&.leaflet-hidden {
+			display: none !important;
+		}
+		
 		&:hover		{ color: $hover-color; background-color: $hover-bg-color;		}
 		&:active	{ color: $hover-color; background-color: $active-bg-color;	}
 
@@ -205,17 +203,22 @@ Adjustments to give leaflet a bootstrap-like look
 		}
 
 		a.leaflet-control-button {
-			&:first-of-type, &.first-child { 
+			&:first-of-type, &.first-child, &.first-visible { 
 			  border-top-left-radius		: $border-radius;
 				border-bottom-left-radius	: $border-radius;
 			}
-			&:last-of-type, &.last-child { 
+			&:last-of-type, &.last-child, &.last-visible { 
 				border-top-right-radius		: $border-radius;
 		    border-bottom-right-radius: $border-radius;
 		    border-right: medium none;
 			}
-			&.last-child { 
+
+			&.last-child, &.last-visible:not(.absolute-last-visible)  { 
 				margin-right: $border-radius;
+			} 
+
+			&.absolute-last-visible  { 
+				margin-right: 0px !important;
 			} 
 		} 
 	} //end of .leaflet-control-button-group.horizontal
@@ -228,18 +231,22 @@ Adjustments to give leaflet a bootstrap-like look
 		}
 
 		a.leaflet-control-button {
-			&:first-of-type, &.first-child { 
+			&:first-of-type, &.first-child, &.first-visible { 
 				border-top-left-radius	: $border-radius;
 				border-top-right-radius	: $border-radius;
 			}
-			&:last-of-type, &.last-child { 
+			&:last-of-type, &.last-child, &.last-visible { 
 				border-bottom-left-radius	: $border-radius;
 				border-bottom-right-radius: $border-radius;
 				border-right: medium none;
 			}
-			&.last-child { 
+			&.last-child, &.last-visible:not(.absolute-last-visible)  { 
 				margin-bottom: $border-radius;
 			} 
+			&.absolute-last-visible  { 
+				margin-bottom: 0px !important;
+			} 
+		
 		}
 	}
 
@@ -253,8 +260,6 @@ Adjustments to give leaflet a bootstrap-like look
 		}
 		a.leaflet-control-button:hover	{ border-color: #adadad; }
 
-		
-		
 		//Separate AND horizontal
 		&.horizontal {
 			a.leaflet-control-button {

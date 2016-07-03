@@ -14,29 +14,30 @@
 
 	var defaultRadioGroupNr = 0,
 			defaultButtonOptions = {
-		id							: '',
-		icon						: 'help',
-		text						: '',
-		disabled				: false,
-		selectable			: false,
-		selected				: false,
-		selectedIcon		: '',
-		modernizrTest		: '',
-		radioGroup			: false,
-		radioGroupId		: '',
-		allowNoSelected	: false,
+				id							: '',
+				icon						: 'help',
+				text						: '',
+				disabled				: false,
+				selectable			: false,
+				selected				: false,
+				hidden					: false,
+				selectedIcon		: '',
+				modernizrTest		: '',
+				radioGroup			: false,
+				radioGroupId		: '',
+				allowNoSelected	: false,
 
-		separatorBefore	: false,
-		containerBefore : false,
-		containerAfter	: false,
-		hoverColor			: null,
-		title						: '',
-		className				: '',
-		attr						: {},
-		href						: '',
-		onClick					: function(){}, //function( onClickObj );
-		context					: null
-	};
+				separatorBefore	: false,
+				containerBefore : false,
+				containerAfter	: false,
+				hoverColor			: null,
+				title						: '',
+				className				: '',
+				attr						: {},
+				href						: '',
+				onClick					: function(){}, //function( onClickObj );
+				context					: null
+			};
 
 
 
@@ -132,6 +133,7 @@
 				$button = $('<a>')
 										.addClass( 'leaflet-control-button ' +
 																(buttonOptions.disabled ? 'leaflet-disabled ' : '') +
+																(buttonOptions.hidden ? 'leaflet-hidden ' : '') +
 																(buttonOptions.separatorBefore ? 'first-child ' : '') +
 																(buttonOptions.radioGroup ? 'radio-button ' : '') +
 																buttonOptions.className
@@ -139,7 +141,7 @@
 										.attr( buttonOptions.attr )
 										.data('button', buttonOptions);
 
-				
+
 				if (buttonOptions.radioGroup) {
 					if (!buttonOptions.allowNoSelected)
 					  $(this._container).addClass('radio-group');
@@ -234,7 +236,7 @@
 
 		//_getOnClickObj
 		_getOnClickObj: function( id, button, selected, radioGroupId ){
-			return L.extend({}, this.options.onClickObj, {id: id, map: this._map, button: button, selected: selected, radioGroupId: radioGroupId});
+			return L.extend({}, this.options.onClickObj, {id: id, map: this._map, button: button, buttonGroup: this, selected: selected, radioGroupId: radioGroupId});
 		},
 
 		//_onClick
@@ -257,16 +259,69 @@
 		},
 
 		//getButton
-		getButton: function( indexOrId ){ return this.buttons[ indexOrId ]; },
+		getButton: function( indexOrIdOrButton ){
+			if (typeof indexOrIdOrButton == 'object')
+			  return indexOrIdOrButton;
+			return this.buttons[ indexOrIdOrButton ];
+		},
 
+
+
+		//enableButton/disableButton
 		_enableButton: function( button, enabled ){ this._buttonToggleClass( button, 'leaflet-disabled', !enabled );	},
+		enableButton: function( indexOrIdOrButton ){ this._enableButton(	this.getButton( indexOrIdOrButton ), true  ); },
+		disableButton: function( indexOrIdOrButton ){ this._enableButton( this.getButton( indexOrIdOrButton ), false ); },
 
-		//enableButton
-		enableButton: function( indexOrId ){ this._enableButton(	this.getButton( indexOrId ), true  ); },
+		//showButton/hideButton
+		_showButton: function( button, show ){
+			var i, $button, nextVisibleIsFirstVisible, nextVisibleIsLastVisible, absoluteLastVisible;
+			this._buttonToggleClass( button, 'leaflet-hidden', !show );
 
-		//disableButton
-		disableButton: function( indexOrId ){ this._enableButton( this.getButton( indexOrId ), false ); },
+			//Update button to display buttons next to hidden buttons with round corners
+			for (i=0; i<this.buttons.length; i++ )
+				$(this.buttons[i]).removeClass('first-visible last-visible absolute-last-visible');
 
+			nextVisibleIsFirstVisible = false;
+			for (i=0; i<this.buttons.length; i++ ){
+				$button = $(this.buttons[i]);
+				if ($button.hasClass('leaflet-hidden')){
+				  if ((i === 0) || $button.hasClass('first-child') || $button.hasClass('last-child')){
+				    //The next visible button is now the first visible
+						nextVisibleIsFirstVisible = true;
+				  }
+				}
+				else
+					if (nextVisibleIsFirstVisible){
+						$button.addClass('first-visible');
+						nextVisibleIsFirstVisible = false;
+					}
+			}
+
+			nextVisibleIsLastVisible = false;
+			absoluteLastVisible = true;
+			for (i=this.buttons.length-1; i>=0; i-- ){
+				$button = $(this.buttons[i]);
+				if ($button.hasClass('leaflet-hidden')){
+				  if ((i == (this.buttons.length-1)) || $button.hasClass('last-child')){
+				    //The next visible button is now the last visible
+						nextVisibleIsLastVisible = true;
+				  }
+				}
+				else {
+					if (nextVisibleIsLastVisible){
+						$button.addClass('last-visible');
+						nextVisibleIsLastVisible = false;
+					}
+					if (absoluteLastVisible){
+					  $button.addClass('absolute-last-visible');
+						absoluteLastVisible = false;
+					}
+				}
+			}
+		},
+
+		showButton: function( indexOrIdOrButton ){ this._showButton(	this.getButton( indexOrIdOrButton ), true  ); },
+		hideButton: function( indexOrIdOrButton ){ this._showButton( this.getButton( indexOrIdOrButton ), false ); },
 
 		//_selectButton
 		_selectButton: function( button, selected, dontCallOnClick ){
@@ -298,10 +353,10 @@
 		},
 
 		//selectButton
-		selectButton: function( indexOrId )		{ this._selectButton( this.getButton( indexOrId ), true		); },
+		selectButton: function( indexOrIdOrButton )		{ this._selectButton( this.getButton( indexOrIdOrButton ), true		); },
 
 		//unselectButton
-		unselectButton: function( indexOrId )	{ this._selectButton( this.getButton( indexOrId ), false	); },
+		unselectButton: function( indexOrIdOrButton )	{ this._selectButton( this.getButton( indexOrIdOrButton ), false	); },
 
 
 
