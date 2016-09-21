@@ -16,8 +16,7 @@
   },
   "dependencies": {
     "jquery": "latest",
-    "leaflet": "latest",
-    "font-awesome": "fontawesome#^4.6.3"
+    "leaflet": "latest"
   },
   "devDependencies": {
     "bourbon": "latest",
